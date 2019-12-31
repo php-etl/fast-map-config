@@ -1,0 +1,49 @@
+{
+    "name": "php-etl/fast-map-config",
+    "description": "This library implements the Extract-Transform-Load pattern asynchronously in PHP with the help of iterators and generators",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Kiboko SAS",
+            "homepage": "http://kiboko.fr"
+        },
+        {
+            "name": "Grégory Planchat",
+            "email": "gregory@kiboko.fr"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php": "^7.2",
+        "php-etl/fast-map": "dev-feature/oroplatform-3.1-compatibility",
+        "symfony/expression-language": "^3.4",
+        "symfony/property-access": "^3.4"
+    },
+    "require-dev": {
+        "phpspec/phpspec": "^5.1",
+        "phpunit/phpunit": "^7.0",
+        "johnkary/phpunit-speedtrap": "^3.1@dev",
+        "mybuilder/phpunit-accelerator": "dev-master",
+        "phpstan/phpstan": "^0.12.0@dev",
+        "infection/infection": "dev-master",
+        "friends-of-phpspec/phpspec-code-coverage": "^4.0@dev"
+    },
+    "autoload": {
+        "psr-4": {
+            "Kiboko\\Component\\ETL\\Config\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "spec\\Kiboko\\Component\\ETL\\Config\\": "spec/",
+            "unit\\Kiboko\\Component\\ETL\\Config\\": "unit/",
+            "functional\\Kiboko\\Component\\ETL\\Config\\": "functional/"
+        }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0.x-dev"
+        }
+    }
+}
