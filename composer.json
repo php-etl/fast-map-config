@@ -16,9 +16,10 @@
     "minimum-stability": "dev",
     "require": {
         "php": "^7.2",
-        "php-etl/fast-map": "dev-feature/oroplatform-3.1-compatibility",
+        "php-etl/fast-map": "^1.0@dev",
         "symfony/expression-language": "^3.4",
-        "symfony/property-access": "^3.4"
+        "symfony/property-access": "^3.4",
+        "php-etl/metadata": "^1.0@dev"
     },
     "require-dev": {
         "phpspec/phpspec": "^5.1",
