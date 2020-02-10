@@ -61,11 +61,29 @@ final class ObjectBuilder implements CompositedMapperBuilderInterface
     {
         return new ObjectMapper(
             new SimpleObjectInitializer(
-                new ClassReferenceMetadata($this->className),
+                new ClassReferenceMetadata($this->getClassName(), $this->getNamespace()),
                 $this->interpreter,
                 ...$this->arguments
             ),
             ...$this->composition
         );
+    }
+
+    private function getClassName(): string
+    {
+        if ($pos = strrpos($this->className, '\\')) {
+            return substr($this->className, $pos + 1);
+        }
+
+        return $this->className;
+    }
+
+    private function getNamespace(): string
+    {
+        if ($pos = strrpos($this->className, '\\')) {
+            return substr($this->className, 0, -strlen($this->getClassName()) - 1);
+        }
+
+        return $this->className;
     }
 }
