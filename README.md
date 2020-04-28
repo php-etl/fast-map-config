@@ -88,8 +88,12 @@ $mapper = (new ArrayBuilder(null, $interpreter))
     ->end()
     ->getMapper();
 
-$compiler->compile(
-    Compiler\StandardCompilationContext::build(new EmptyPropertyPath(), __DIR__, 'Foo\\ArraySpaghettiMapper'),
+$compiler = new Compiler\Compiler(new Compiler\Strategy\Spaghetti());
+
+$mapper = $compiler->compile(
+    Compiler\StandardCompilationContext::build(
+        new EmptyPropertyPath(), __DIR__, 'Foo\\ArraySpaghettiMapper'
+    ),
     $mapper
 );
 

@@ -2,7 +2,6 @@
 
 namespace Kiboko\Component\ETL\Config;
 
-use Kiboko\Component\ETL\FastMap\Contracts\FieldScopingInterface;
 use Kiboko\Component\ETL\FastMap\Contracts\MapperInterface;
 use Kiboko\Component\ETL\FastMap\Mapping\Composite\ArrayMapper;
 use Symfony\Component\ExpressionLanguage\ExpressionLanguage;
