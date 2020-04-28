@@ -2,6 +2,7 @@
 
 namespace Kiboko\Component\ETL\Config;
 
+use Kiboko\Component\ETL\FastMap\Contracts\FieldMapperInterface;
 use Kiboko\Component\ETL\FastMap\Contracts\FieldScopingInterface;
 use Kiboko\Component\ETL\FastMap\Contracts\MapperInterface;
 use Kiboko\Component\ETL\FastMap\Mapping\Field;
@@ -41,6 +42,18 @@ final class CompositeBuilder implements MapperBuilderInterface, \IteratorAggrega
         foreach ($builders as $builder) {
             array_push($this->fields, ...$builder);
         }
+
+        return $this;
+    }
+
+    public function field(string $outputPath, FieldMapperInterface $mapper): CompositeBuilder
+    {
+        $this->fields[] = function () use ($outputPath, $mapper) {
+            return new Field(
+                new PropertyPath($outputPath),
+                $mapper
+            );
+        };
 
         return $this;
     }
@@ -116,7 +129,21 @@ final class CompositeBuilder implements MapperBuilderInterface, \IteratorAggrega
         return $child;
     }
 
-    public function object(string $outputPath, string $expression, string $className): ObjectBuilder
+    public function map(string $outputPath, string $expression): ArrayBuilder
+    {
+        $child = new ArrayBuilder($this, $this->interpreter);
+
+        $this->fields[] = function () use ($child, $outputPath, $expression) {
+            return new Field(
+                new PropertyPath($outputPath),
+                $child->getMapper()
+            );
+        };
+
+        return $child;
+    }
+
+    public function object(string $outputPath, string $className, string $expression): ObjectBuilder
     {
         $child = new ObjectBuilder($className, $this, $this->interpreter);
 
@@ -132,7 +159,7 @@ final class CompositeBuilder implements MapperBuilderInterface, \IteratorAggrega
         return $child;
     }
 
-    public function collection(string $outputPath, string $expression, string $className): ObjectBuilder
+    public function collection(string $outputPath, string $className, string $expression): ObjectBuilder
     {
         $child = new ObjectBuilder($className, $this, $this->interpreter);
 
