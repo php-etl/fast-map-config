@@ -356,12 +356,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-etl/fast-map.git",
-                "reference": "816a08215d8f94c77d131478302993f5841f7fd6"
+                "reference": "d32e3fb6aad4e7990c237205d4a5ae29cc31d5fe"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-etl/fast-map/zipball/816a08215d8f94c77d131478302993f5841f7fd6",
-                "reference": "816a08215d8f94c77d131478302993f5841f7fd6",
+                "url": "https://api.github.com/repos/php-etl/fast-map/zipball/d32e3fb6aad4e7990c237205d4a5ae29cc31d5fe",
+                "reference": "d32e3fb6aad4e7990c237205d4a5ae29cc31d5fe",
                 "shasum": ""
             },
             "require": {
@@ -410,7 +410,7 @@
                 }
             ],
             "description": "This library implements a compiled data mapping library",
-            "time": "2020-02-12T08:22:44+00:00"
+            "time": "2020-04-23T14:51:16+00:00"
         },
         {
             "name": "php-etl/metadata",
@@ -3930,5 +3930,6 @@
     "platform": {
         "php": "^7.2"
     },
-    "platform-dev": []
+    "platform-dev": [],
+    "plugin-api-version": "1.1.0"
 }

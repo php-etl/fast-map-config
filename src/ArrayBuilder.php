@@ -6,7 +6,7 @@ use Kiboko\Component\ETL\FastMap\Contracts\MapperInterface;
 use Kiboko\Component\ETL\FastMap\Mapping\Composite\ArrayMapper;
 use Symfony\Component\ExpressionLanguage\ExpressionLanguage;
 
-final class ArrayBuilder implements CompositedMapperBuilderInterface
+final class ArrayBuilder implements ArrayBuilderInterface
 {
     /** @var MapperBuilderInterface */
     private $parent;
@@ -22,7 +22,7 @@ final class ArrayBuilder implements CompositedMapperBuilderInterface
         $this->composition = new CompositeBuilder($this, $this->interpreter);
     }
 
-    public function children(): CompositeBuilder
+    public function children(): CompositeBuilderInterface
     {
         return $this->composition;
     }

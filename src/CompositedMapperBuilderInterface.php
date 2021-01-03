@@ -4,5 +4,5 @@ namespace Kiboko\Component\ETL\Config;
 
 interface CompositedMapperBuilderInterface extends MapperBuilderInterface
 {
-    public function children(): CompositeBuilder;
+    public function children(): CompositeBuilderInterface;
 }

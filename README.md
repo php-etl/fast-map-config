@@ -169,3 +169,17 @@ $compiler->compile(
     $mapper
 );
 ```
+
+```php
+<?php
+
+use Kiboko\Component\ETL\Config\ArrayBuilder;
+
+$builder = new ArrayBuilder();
+$builder
+    ->children()
+        ->expression('[additionalUnits.0.code]', 'coalesce(input["units"][0], null)')
+        ->expression('[additionalUnits.1.code]', 'coalesce(input["units"][1], null)')
+        ->expression('[additionalUnits.2.code]', 'coalesce(input["units"][2], null)')
+    ->end();
+```

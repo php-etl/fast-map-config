@@ -2,24 +2,19 @@
 
 namespace Kiboko\Component\ETL\Config;
 
-use Kiboko\Component\ETL\FastMap\Contracts\FieldMapperInterface;
-use Kiboko\Component\ETL\FastMap\Contracts\FieldScopingInterface;
-use Kiboko\Component\ETL\FastMap\Contracts\MapperInterface;
-use Kiboko\Component\ETL\FastMap\Mapping\Field;
-use Kiboko\Component\ETL\FastMap\Mapping\ListField;
-use Kiboko\Component\ETL\FastMap\Mapping\MultipleRelation;
-use Kiboko\Component\ETL\FastMap\Mapping\SingleRelation;
+use Kiboko\Component\ETL\FastMap\Contracts;
+use Kiboko\Component\ETL\FastMap\Mapping;
 use Symfony\Component\ExpressionLanguage\Expression;
 use Symfony\Component\ExpressionLanguage\ExpressionLanguage;
 use Symfony\Component\PropertyAccess\PropertyPath;
 
-final class CompositeBuilder implements MapperBuilderInterface, \IteratorAggregate
+final class CompositeBuilder implements \IteratorAggregate, CompositeBuilderInterface
 {
     /** @var MapperBuilderInterface */
     private $parent;
     /** @var ExpressionLanguage */
     private $interpreter;
-    /** @var FieldScopingInterface[] */
+    /** @var Contracts\FieldScopingInterface[] */
     private $fields;
 
     public function __construct(?MapperBuilderInterface $parent = null, ?ExpressionLanguage $interpreter = null)
@@ -37,7 +32,7 @@ final class CompositeBuilder implements MapperBuilderInterface, \IteratorAggrega
         return $this->parent;
     }
 
-    public function merge(CompositeBuilder ...$builders): CompositeBuilder
+    public function merge(CompositeBuilderInterface ...$builders): CompositeBuilderInterface
     {
         foreach ($builders as $builder) {
             array_push($this->fields, ...$builder);
@@ -46,10 +41,10 @@ final class CompositeBuilder implements MapperBuilderInterface, \IteratorAggrega
         return $this;
     }
 
-    public function field(string $outputPath, FieldMapperInterface $mapper): CompositeBuilder
+    public function field(string $outputPath, Contracts\FieldMapperInterface $mapper): CompositeBuilderInterface
     {
         $this->fields[] = function () use ($outputPath, $mapper) {
-            return new Field(
+            return new Mapping\Field(
                 new PropertyPath($outputPath),
                 $mapper
             );
@@ -58,7 +53,7 @@ final class CompositeBuilder implements MapperBuilderInterface, \IteratorAggrega
         return $this;
     }
 
-    public function getMapper(): MapperInterface
+    public function getMapper(): Contracts\MapperInterface
     {
         return $this->parent->getMapper();
     }
@@ -72,12 +67,12 @@ final class CompositeBuilder implements MapperBuilderInterface, \IteratorAggrega
         );
     }
 
-    public function copy(string $outputPath, string $inputPath): CompositeBuilder
+    public function copy(string $outputPath, string $inputPath): CompositeBuilderInterface
     {
         $this->fields[] = function () use ($outputPath, $inputPath) {
-            return new Field(
+            return new Mapping\Field(
                 new PropertyPath($outputPath),
-                new Field\CopyValueMapper(
+                new Mapping\Field\CopyValueMapper(
                     new PropertyPath($inputPath)
                 )
             );
@@ -86,24 +81,24 @@ final class CompositeBuilder implements MapperBuilderInterface, \IteratorAggrega
         return $this;
     }
 
-    public function constant(string $outputPath, $value): CompositeBuilder
+    public function constant(string $outputPath, $value): CompositeBuilderInterface
     {
         $this->fields[] = function () use ($outputPath, $value) {
-            return new Field(
+            return new Mapping\Field(
                 new PropertyPath($outputPath),
-                new Field\ConstantValueMapper($value)
+                new Mapping\Field\ConstantValueMapper($value)
             );
         };
 
         return $this;
     }
 
-    public function expression(string $outputPath, string $expression): CompositeBuilder
+    public function expression(string $outputPath, string $expression): CompositeBuilderInterface
     {
         $this->fields[] = function () use ($outputPath, $expression) {
-            return new Field(
+            return new Mapping\Field(
                 new PropertyPath($outputPath),
-                new Field\ExpressionLanguageValueMapper(
+                new Mapping\Field\ExpressionLanguageValueMapper(
                     $this->interpreter,
                     new Expression($expression)
                 )
@@ -113,12 +108,27 @@ final class CompositeBuilder implements MapperBuilderInterface, \IteratorAggrega
         return $this;
     }
 
-    public function list(string $outputPath, string $expression): ArrayBuilder
+    public function repeated(string $outputPath, string $expression): CompositeBuilderInterface
+    {
+        $this->fields[] = function () use ($outputPath, $expression) {
+            return new Mapping\RepeatedField(
+                new PropertyPath($outputPath),
+                new Mapping\Field\ExpressionLanguageValueMapper(
+                    $this->interpreter,
+                    new Expression($expression)
+                )
+            );
+        };
+
+        return $this;
+    }
+
+    public function list(string $outputPath, string $expression): ArrayBuilderInterface
     {
         $child = new ArrayBuilder($this, $this->interpreter);
 
         $this->fields[] = function () use ($child, $outputPath, $expression) {
-            return new ListField(
+            return new Mapping\ListField(
                 new PropertyPath($outputPath),
                 $this->interpreter,
                 new Expression($expression),
@@ -129,12 +139,12 @@ final class CompositeBuilder implements MapperBuilderInterface, \IteratorAggrega
         return $child;
     }
 
-    public function map(string $outputPath, string $expression): ArrayBuilder
+    public function map(string $outputPath, string $expression): ArrayBuilderInterface
     {
         $child = new ArrayBuilder($this, $this->interpreter);
 
         $this->fields[] = function () use ($child, $outputPath, $expression) {
-            return new Field(
+            return new Mapping\Field(
                 new PropertyPath($outputPath),
                 $child->getMapper()
             );
@@ -143,12 +153,12 @@ final class CompositeBuilder implements MapperBuilderInterface, \IteratorAggrega
         return $child;
     }
 
-    public function object(string $outputPath, string $className, string $expression): ObjectBuilder
+    public function object(string $outputPath, string $className, string $expression): ObjectBuilderInterface
     {
         $child = new ObjectBuilder($className, $this, $this->interpreter);
 
         $this->fields[] = function () use ($child, $outputPath, $expression) {
-            return new SingleRelation(
+            return new Mapping\SingleRelation(
                 new PropertyPath($outputPath),
                 $this->interpreter,
                 new Expression($expression),
@@ -159,12 +169,12 @@ final class CompositeBuilder implements MapperBuilderInterface, \IteratorAggrega
         return $child;
     }
 
-    public function collection(string $outputPath, string $className, string $expression): ObjectBuilder
+    public function collection(string $outputPath, string $className, string $expression): ObjectBuilderInterface
     {
         $child = new ObjectBuilder($className, $this, $this->interpreter);
 
         $this->fields[] = function () use ($child, $outputPath, $expression) {
-            return new MultipleRelation(
+            return new Mapping\MultipleRelation(
                 new PropertyPath($outputPath),
                 $this->interpreter,
                 new Expression($expression),

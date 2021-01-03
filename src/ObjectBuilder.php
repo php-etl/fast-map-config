@@ -10,7 +10,7 @@ use Kiboko\Component\ETL\Metadata\ClassReferenceMetadata;
 use Symfony\Component\ExpressionLanguage\Expression;
 use Symfony\Component\ExpressionLanguage\ExpressionLanguage;
 
-final class ObjectBuilder implements CompositedMapperBuilderInterface
+final class ObjectBuilder implements ObjectBuilderInterface
 {
     /** @var string */
     private $className;
@@ -35,7 +35,7 @@ final class ObjectBuilder implements CompositedMapperBuilderInterface
         $this->arguments = [];
     }
 
-    public function children(): CompositeBuilder
+    public function children(): CompositeBuilderInterface
     {
         return $this->composition;
     }
@@ -48,7 +48,7 @@ final class ObjectBuilder implements CompositedMapperBuilderInterface
         return $this->parent;
     }
 
-    public function arguments(string ...$expressions): ObjectBuilder
+    public function arguments(string ...$expressions): ObjectBuilderInterface
     {
         $this->arguments = array_map(function($expression) {
             return new Expression($expression);
