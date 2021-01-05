@@ -57,7 +57,7 @@ final class ObjectBuilder implements ObjectBuilderInterface
         return $this;
     }
 
-    public function getMapper(): MapperInterface
+    public function getMapper(): ObjectMapper
     {
         return new ObjectMapper(
             new SimpleObjectInitializer(

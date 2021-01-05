@@ -35,7 +35,7 @@ final class ArrayBuilder implements ArrayBuilderInterface
         return $this->parent;
     }
 
-    public function getMapper(): MapperInterface
+    public function getMapper(): ArrayMapper
     {
         return new ArrayMapper(...$this->composition);
     }
