@@ -1,8 +1,8 @@
 <?php declare(strict_types=1);
 
-namespace Kiboko\Component\ETL\Config;
+namespace Kiboko\Component\FastMapConfig;
 
-use Kiboko\Component\ETL\FastMap\Contracts\MapperInterface;
+use Kiboko\Component\FastMap\Contracts\MapperInterface;
 
 interface MapperBuilderInterface
 {

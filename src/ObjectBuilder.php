@@ -1,12 +1,11 @@
 <?php declare(strict_types=1);
 
-namespace Kiboko\Component\ETL\Config;
+namespace Kiboko\Component\FastMapConfig;
 
-use Kiboko\Component\ETL\FastMap\Contracts\FieldScopingInterface;
-use Kiboko\Component\ETL\FastMap\Contracts\MapperInterface;
-use Kiboko\Component\ETL\FastMap\Mapping\Composite\ObjectMapper;
-use Kiboko\Component\ETL\FastMap\SimpleObjectInitializer;
-use Kiboko\Component\ETL\Metadata\ClassReferenceMetadata;
+use Kiboko\Component\FastMap\Contracts\FieldScopingInterface;
+use Kiboko\Component\FastMap\Mapping\Composite\ObjectMapper;
+use Kiboko\Component\FastMap\SimpleObjectInitializer;
+use Kiboko\Component\Metadata\ClassReferenceMetadata;
 use Symfony\Component\ExpressionLanguage\Expression;
 use Symfony\Component\ExpressionLanguage\ExpressionLanguage;
 
@@ -50,7 +49,7 @@ final class ObjectBuilder implements ObjectBuilderInterface
 
     public function arguments(string ...$expressions): ObjectBuilderInterface
     {
-        $this->arguments = array_map(function($expression) {
+        $this->arguments = array_map(function ($expression) {
             return new Expression($expression);
         }, $expressions);
 

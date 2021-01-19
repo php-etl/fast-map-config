@@ -1,6 +1,6 @@
 <?php
 
-namespace Kiboko\Component\ETL\Config;
+namespace Kiboko\Component\FastMapConfig;
 
 interface ObjectBuilderInterface extends CompositedMapperBuilderInterface
 {

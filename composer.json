@@ -23,14 +23,14 @@
     },
     "autoload": {
         "psr-4": {
-            "Kiboko\\Component\\ETL\\Config\\": "src/"
+            "Kiboko\\Component\\FastMapConfig\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "spec\\Kiboko\\Component\\ETL\\Config\\": "spec/",
-            "unit\\Kiboko\\Component\\ETL\\Config\\": "unit/",
-            "functional\\Kiboko\\Component\\ETL\\Config\\": "functional/"
+            "spec\\Kiboko\\Component\\FastMapConfig\\": "spec/",
+            "unit\\Kiboko\\Component\\FastMapConfig\\": "unit/",
+            "functional\\Kiboko\\Component\\FastMapConfig\\": "functional/"
         }
     },
     "extra": {
@@ -45,8 +45,6 @@
         "johnkary/phpunit-speedtrap": "*",
         "mybuilder/phpunit-accelerator": "*",
         "phpunit/php-invoker": "*",
-        "phpstan/phpstan": "^0.12",
-        "infection/infection": "^0.20",
         "php-etl/phpspec-extension": "^0.2@dev"
     }
 }

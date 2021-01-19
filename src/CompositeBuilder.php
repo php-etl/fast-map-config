@@ -1,9 +1,9 @@
 <?php declare(strict_types=1);
 
-namespace Kiboko\Component\ETL\Config;
+namespace Kiboko\Component\FastMapConfig;
 
-use Kiboko\Component\ETL\FastMap\Contracts;
-use Kiboko\Component\ETL\FastMap\Mapping;
+use Kiboko\Component\FastMap\Contracts;
+use Kiboko\Component\FastMap\Mapping;
 use Symfony\Component\ExpressionLanguage\Expression;
 use Symfony\Component\ExpressionLanguage\ExpressionLanguage;
 use Symfony\Component\PropertyAccess\PropertyPath;
@@ -61,7 +61,7 @@ final class CompositeBuilder implements \IteratorAggregate, CompositeBuilderInte
     public function getIterator()
     {
         return new \ArrayIterator(
-            array_map(function(callable $callback) {
+            array_map(function (callable $callback) {
                 return $callback();
             }, $this->fields)
         );

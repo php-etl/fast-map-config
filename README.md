@@ -7,7 +7,7 @@ Example 1: configure mapping for an array
 ```php
 <?php
 
-use Kiboko\Component\ETL\Config\ArrayBuilder;
+use Kiboko\Component\FastMapConfig\ArrayBuilder;
 use Kiboko\Component\ETL\FastMap\Compiler;
 use Kiboko\Component\ETL\FastMap\PropertyAccess\EmptyPropertyPath;
 use Symfony\Component\ExpressionLanguage\ExpressionFunction;
@@ -106,9 +106,10 @@ Example 2: configure mapping for an object
 ```php
 <?php
 
-use Kiboko\Component\ETL\Config\CompositeBuilder;use Kiboko\Component\ETL\Config\ObjectBuilder;
-use Kiboko\Component\ETL\FastMap\Compiler;
-use Kiboko\Component\ETL\FastMap\PropertyAccess\EmptyPropertyPath;
+use Kiboko\Component\FastMapConfig\CompositeBuilder;
+use Kiboko\Component\FastMapConfig\ObjectBuilder;
+use Kiboko\Component\FastMap\Compiler;
+use Kiboko\Component\FastMap\PropertyAccess\EmptyPropertyPath;
 use Symfony\Component\ExpressionLanguage\ExpressionFunction;
 
 class Order
@@ -173,7 +174,7 @@ $compiler->compile(
 ```php
 <?php
 
-use Kiboko\Component\ETL\Config\ArrayBuilder;
+use Kiboko\Component\FastMapConfig\ArrayBuilder;
 
 $builder = new ArrayBuilder();
 $builder
