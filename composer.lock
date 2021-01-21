@@ -314,19 +314,19 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-etl/fast-map.git",
-                "reference": "f145ae953084b5568d4d0476150d4b4f009e3c3b"
+                "reference": "3b3b4846f247064c57805a5ed6d0455a338e7947"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-etl/fast-map/zipball/f145ae953084b5568d4d0476150d4b4f009e3c3b",
-                "reference": "f145ae953084b5568d4d0476150d4b4f009e3c3b",
+                "url": "https://api.github.com/repos/php-etl/fast-map/zipball/3b3b4846f247064c57805a5ed6d0455a338e7947",
+                "reference": "3b3b4846f247064c57805a5ed6d0455a338e7947",
                 "shasum": ""
             },
             "require": {
                 "doctrine/inflector": "^2.0",
                 "nikic/php-parser": "^4.9@dev",
                 "php": "^8.0",
-                "php-etl/contracts": "^0.1@dev",
+                "php-etl/contracts": "^0.1.x-dev",
                 "php-etl/metadata": "^0.2@dev",
                 "symfony/cache": "^5.4",
                 "symfony/expression-language": "^5.2",
@@ -334,12 +334,10 @@
             },
             "require-dev": {
                 "friends-of-phpspec/phpspec-code-coverage": "^6.0",
-                "infection/infection": "^0.20",
                 "johnkary/phpunit-speedtrap": "*",
                 "mybuilder/phpunit-accelerator": "*",
                 "php-etl/phpspec-extension": "^0.2@dev",
                 "phpspec/phpspec": "^7.0",
-                "phpstan/phpstan": "^0.12",
                 "phpunit/php-invoker": "*",
                 "phpunit/phpunit": "^9.0"
             },
@@ -374,7 +372,7 @@
                 "issues": "https://github.com/php-etl/fast-map/issues",
                 "source": "https://github.com/php-etl/fast-map/tree/master"
             },
-            "time": "2021-01-19T08:14:50+00:00"
+            "time": "2021-01-20T23:59:04+00:00"
         },
         {
             "name": "php-etl/metadata",
