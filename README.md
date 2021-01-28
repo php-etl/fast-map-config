@@ -8,8 +8,8 @@ Example 1: configure mapping for an array
 <?php
 
 use Kiboko\Component\FastMapConfig\ArrayBuilder;
-use Kiboko\Component\ETL\FastMap\Compiler;
-use Kiboko\Component\ETL\FastMap\PropertyAccess\EmptyPropertyPath;
+use Kiboko\Component\FastMap\Compiler;
+use Kiboko\Component\FastMap\PropertyAccess\EmptyPropertyPath;
 use Symfony\Component\ExpressionLanguage\ExpressionFunction;
 
 $input = [
@@ -110,7 +110,6 @@ use Kiboko\Component\FastMapConfig\CompositeBuilder;
 use Kiboko\Component\FastMapConfig\ObjectBuilder;
 use Kiboko\Component\FastMap\Compiler;
 use Kiboko\Component\FastMap\PropertyAccess\EmptyPropertyPath;
-use Symfony\Component\ExpressionLanguage\ExpressionFunction;
 
 class Order
 {

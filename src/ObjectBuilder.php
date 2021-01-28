@@ -11,24 +11,15 @@ use Symfony\Component\ExpressionLanguage\ExpressionLanguage;
 
 final class ObjectBuilder implements ObjectBuilderInterface
 {
-    /** @var string */
-    private $className;
-    /** @var MapperBuilderInterface */
-    private $parent;
-    /** @var ExpressionLanguage */
-    private $interpreter;
-    /** @var CompositeBuilder */
-    private $composition;
+    private CompositeBuilder $composition;
     /** @var FieldScopingInterface[] */
-    private $arguments;
+    private array $arguments;
 
     public function __construct(
-        string $className,
-        ?MapperBuilderInterface $parent = null,
-        ?ExpressionLanguage $interpreter = null
+        private string $className,
+        private ?MapperBuilderInterface $parent = null,
+        private ?ExpressionLanguage $interpreter = null
     ) {
-        $this->className = $className;
-        $this->parent = $parent;
         $this->interpreter = $interpreter ?? new ExpressionLanguage();
         $this->composition = new CompositeBuilder($this, $this->interpreter);
         $this->arguments = [];

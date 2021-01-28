@@ -7,16 +7,11 @@ use Symfony\Component\ExpressionLanguage\ExpressionLanguage;
 
 final class ArrayBuilder implements ArrayBuilderInterface
 {
-    /** @var MapperBuilderInterface */
-    private $parent;
-    /** @var ExpressionLanguage */
-    private $interpreter;
-    /** @var CompositeBuilder */
-    private $composition;
+    private ExpressionLanguage $interpreter;
+    private CompositeBuilder $composition;
 
-    public function __construct(?MapperBuilderInterface $parent = null, ?ExpressionLanguage $interpreter = null)
+    public function __construct(private ?MapperBuilderInterface $parent = null, ?ExpressionLanguage $interpreter = null)
     {
-        $this->parent = $parent;
         $this->interpreter = $interpreter ?? new ExpressionLanguage();
         $this->composition = new CompositeBuilder($this, $this->interpreter);
     }

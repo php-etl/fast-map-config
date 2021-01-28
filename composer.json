@@ -28,10 +28,11 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "spec\\Kiboko\\Component\\FastMapConfig\\": "spec/",
-            "unit\\Kiboko\\Component\\FastMapConfig\\": "unit/",
-            "functional\\Kiboko\\Component\\FastMapConfig\\": "functional/"
+            "functional\\Kiboko\\Component\\FastMapConfig\\": "tests/functional/"
         }
+    },
+    "config": {
+        "bin-dir": "bin"
     },
     "extra": {
         "branch-alias": {

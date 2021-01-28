@@ -10,12 +10,10 @@ use Symfony\Component\PropertyAccess\PropertyPath;
 
 final class CompositeBuilder implements \IteratorAggregate, CompositeBuilderInterface
 {
-    /** @var MapperBuilderInterface */
-    private $parent;
-    /** @var ExpressionLanguage */
-    private $interpreter;
+    private ?MapperBuilderInterface $parent;
+    private ExpressionLanguage $interpreter;
     /** @var Contracts\FieldScopingInterface[] */
-    private $fields;
+    private array $fields;
 
     public function __construct(?MapperBuilderInterface $parent = null, ?ExpressionLanguage $interpreter = null)
     {
