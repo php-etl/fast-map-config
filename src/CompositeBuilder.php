@@ -2,11 +2,11 @@
 
 namespace Kiboko\Component\FastMapConfig;
 
-use Kiboko\Component\FastMap\Contracts;
 use Kiboko\Component\FastMap\Mapping;
 use Kiboko\Contract\Mapping\ArrayBuilderInterface;
 use Kiboko\Contract\Mapping\CompositeBuilderInterface;
 use Kiboko\Contract\Mapping\FieldMapperInterface;
+use Kiboko\Contract\Mapping\FieldScopingInterface;
 use Kiboko\Contract\Mapping\MapperBuilderInterface;
 use Kiboko\Contract\Mapping\MapperInterface;
 use Kiboko\Contract\Mapping\ObjectBuilderInterface;
@@ -17,7 +17,7 @@ use Symfony\Component\PropertyAccess\PropertyPath;
 final class CompositeBuilder implements \IteratorAggregate, CompositeBuilderInterface
 {
     private ExpressionLanguage $interpreter;
-    /** @var Contracts\FieldScopingInterface[] */
+    /** @var FieldScopingInterface[] */
     private array $fields;
 
     public function __construct(private ?MapperBuilderInterface $parent = null, ?ExpressionLanguage $interpreter = null)
