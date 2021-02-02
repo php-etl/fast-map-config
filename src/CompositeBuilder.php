@@ -4,20 +4,24 @@ namespace Kiboko\Component\FastMapConfig;
 
 use Kiboko\Component\FastMap\Contracts;
 use Kiboko\Component\FastMap\Mapping;
+use Kiboko\Contract\Mapping\ArrayBuilderInterface;
+use Kiboko\Contract\Mapping\CompositeBuilderInterface;
+use Kiboko\Contract\Mapping\FieldMapperInterface;
+use Kiboko\Contract\Mapping\MapperBuilderInterface;
+use Kiboko\Contract\Mapping\MapperInterface;
+use Kiboko\Contract\Mapping\ObjectBuilderInterface;
 use Symfony\Component\ExpressionLanguage\Expression;
 use Symfony\Component\ExpressionLanguage\ExpressionLanguage;
 use Symfony\Component\PropertyAccess\PropertyPath;
 
 final class CompositeBuilder implements \IteratorAggregate, CompositeBuilderInterface
 {
-    private ?MapperBuilderInterface $parent;
     private ExpressionLanguage $interpreter;
     /** @var Contracts\FieldScopingInterface[] */
     private array $fields;
 
-    public function __construct(?MapperBuilderInterface $parent = null, ?ExpressionLanguage $interpreter = null)
+    public function __construct(private ?MapperBuilderInterface $parent = null, ?ExpressionLanguage $interpreter = null)
     {
-        $this->parent = $parent;
         $this->interpreter = $interpreter ?? new ExpressionLanguage();
         $this->fields = [];
     }
@@ -39,7 +43,7 @@ final class CompositeBuilder implements \IteratorAggregate, CompositeBuilderInte
         return $this;
     }
 
-    public function field(string $outputPath, Contracts\FieldMapperInterface $mapper): CompositeBuilderInterface
+    public function field(string $outputPath, FieldMapperInterface $mapper): CompositeBuilderInterface
     {
         $this->fields[] = function () use ($outputPath, $mapper) {
             return new Mapping\Field(
@@ -51,7 +55,7 @@ final class CompositeBuilder implements \IteratorAggregate, CompositeBuilderInte
         return $this;
     }
 
-    public function getMapper(): Contracts\MapperInterface
+    public function getMapper(): MapperInterface
     {
         return $this->parent->getMapper();
     }

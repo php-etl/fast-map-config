@@ -3,6 +3,9 @@
 namespace Kiboko\Component\FastMapConfig;
 
 use Kiboko\Component\FastMap\Mapping\Composite\ArrayMapper;
+use Kiboko\Contract\Mapping\ArrayBuilderInterface;
+use Kiboko\Contract\Mapping\CompositeBuilderInterface;
+use Kiboko\Contract\Mapping\MapperBuilderInterface;
 use Symfony\Component\ExpressionLanguage\ExpressionLanguage;
 
 final class ArrayBuilder implements ArrayBuilderInterface

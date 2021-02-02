@@ -2,10 +2,13 @@
 
 namespace Kiboko\Component\FastMapConfig;
 
-use Kiboko\Component\FastMap\Contracts\FieldScopingInterface;
 use Kiboko\Component\FastMap\Mapping\Composite\ObjectMapper;
 use Kiboko\Component\FastMap\SimpleObjectInitializer;
 use Kiboko\Component\Metadata\ClassReferenceMetadata;
+use Kiboko\Contract\Mapping\CompositeBuilderInterface;
+use Kiboko\Contract\Mapping\FieldScopingInterface;
+use Kiboko\Contract\Mapping\MapperBuilderInterface;
+use Kiboko\Contract\Mapping\ObjectBuilderInterface;
 use Symfony\Component\ExpressionLanguage\Expression;
 use Symfony\Component\ExpressionLanguage\ExpressionLanguage;
 
