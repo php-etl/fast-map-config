@@ -2,25 +2,21 @@
 
 namespace Kiboko\Component\FastMapConfig;
 
-use Kiboko\Component\FastMap\Mapping\Composite\ObjectMapper;
-use Kiboko\Component\FastMap\SimpleObjectInitializer;
-use Kiboko\Component\Metadata\ClassReferenceMetadata;
-use Kiboko\Contract\Mapping\CompositeBuilderInterface;
-use Kiboko\Contract\Mapping\FieldScopingInterface;
-use Kiboko\Contract\Mapping\MapperBuilderInterface;
-use Kiboko\Contract\Mapping\ObjectBuilderInterface;
+use Kiboko\Component\FastMap;
+use Kiboko\Component\Metadata;
+use Kiboko\Contract\Mapping;
 use Symfony\Component\ExpressionLanguage\Expression;
 use Symfony\Component\ExpressionLanguage\ExpressionLanguage;
 
-final class ObjectBuilder implements ObjectBuilderInterface
+final class ObjectBuilder implements Mapping\ObjectBuilderInterface
 {
     private CompositeBuilder $composition;
-    /** @var FieldScopingInterface[] */
+    /** @var Mapping\FieldScopingInterface[] */
     private array $arguments;
 
     public function __construct(
         private string $className,
-        private ?MapperBuilderInterface $parent = null,
+        private ?Mapping\MapperBuilderInterface $parent = null,
         private ?ExpressionLanguage $interpreter = null
     ) {
         $this->interpreter = $interpreter ?? new ExpressionLanguage();
@@ -28,12 +24,12 @@ final class ObjectBuilder implements ObjectBuilderInterface
         $this->arguments = [];
     }
 
-    public function children(): CompositeBuilderInterface
+    public function children(): Mapping\CompositeBuilderInterface
     {
         return $this->composition;
     }
 
-    public function end(): ?MapperBuilderInterface
+    public function end(): ?Mapping\MapperBuilderInterface
     {
         if ($this->parent === null) {
             throw new \BadMethodCallException('Could not find parent object, aborting.');
@@ -41,7 +37,7 @@ final class ObjectBuilder implements ObjectBuilderInterface
         return $this->parent;
     }
 
-    public function arguments(string ...$expressions): ObjectBuilderInterface
+    public function arguments(string ...$expressions): Mapping\ObjectBuilderInterface
     {
         $this->arguments = array_map(function ($expression) {
             return new Expression($expression);
@@ -50,11 +46,11 @@ final class ObjectBuilder implements ObjectBuilderInterface
         return $this;
     }
 
-    public function getMapper(): ObjectMapper
+    public function getMapper(): FastMap\Mapping\Composite\ObjectMapper
     {
-        return new ObjectMapper(
-            new SimpleObjectInitializer(
-                new ClassReferenceMetadata($this->getClassName(), $this->getNamespace()),
+        return new FastMap\Mapping\Composite\ObjectMapper(
+            new FastMap\SimpleObjectInitializer(
+                new Metadata\ClassReferenceMetadata($this->getClassName(), $this->getNamespace()),
                 $this->interpreter,
                 ...$this->arguments
             ),
