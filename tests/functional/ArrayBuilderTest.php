@@ -71,19 +71,19 @@ final class ArrayBuilderTest extends TestCase
     {
         $interpreter = new ExpressionLanguage();
         $interpreter->addFunction(ExpressionFunction::fromPhp('array_merge', 'merge'));
-//        $interpreter->addFunction(
-//            new ExpressionFunction(
-//            'price',
-//                function (string $value, string $currency)
-//                {
-//                    return sprintf('sprintf("%%s %%s", number_format(%s, 2), "%s")', $value, addslashes($currency));
-//                },
-//                function (float $value, string $currency)
-//                {
-//                    return sprintf('%s %s', number_format($value, 2), $currency);
-//                }
-//            )
-//        );
+        $interpreter->addFunction(
+            new ExpressionFunction(
+            'price',
+                function (string $value, string $currency)
+                {
+                    return sprintf('sprintf("%%s %%s", number_format(%s, 2), %s)', $value, $currency);
+                },
+                function (float $value, string $currency)
+                {
+                    return sprintf('%s %s', number_format($value, 2), $currency);
+                }
+            )
+        );
 
         $mapper = (new ArrayBuilder(null, $interpreter))
             ->children()
@@ -93,7 +93,7 @@ final class ArrayBuilderTest extends TestCase
             ->list('[items]', 'merge( input["items"], input["shippings"] )')
                 ->children()
                 ->copy('[sku]', '[sku]')
-//                ->expression('[price]', 'price( input["price"]["value"], input["price"]["currency"] )')
+                ->expression('[price]', 'price( input["price"]["value"], input["price"]["currency"] )')
                 ->end()
             ->end()
             ->end()
@@ -112,10 +112,10 @@ final class ArrayBuilderTest extends TestCase
             [
                 "type" => "ORDER",
                 "items" => [
-                    ["sku" => "123456"],
-                    ["sku" => "234567"],
-                    ["sku" => "123456"],
-                    ["sku" => "234567"]
+                    ["sku" => "123456", "price" => '123.45 EUR'],
+                    ["sku" => "234567", "price" => '23.45 EUR'],
+                    ["sku" => "123456", "price" => '123.45 EUR'],
+                    ["sku" => "234567", "price" => '23.45 EUR']
                 ],
                 "customer" => [
                     "first_name" => "John",

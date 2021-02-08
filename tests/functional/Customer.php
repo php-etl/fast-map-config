@@ -17,6 +17,4 @@ final class Customer
     {
         $this->name = $name;
     }
-
-
 }
