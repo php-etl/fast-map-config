@@ -443,12 +443,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-etl/mapping-contracts.git",
-                "reference": "e7fdddf8373f658caf939c9e1766d09c9c5835dd"
+                "reference": "3782b391ea1968a189f622f5c6f0606345488116"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-etl/mapping-contracts/zipball/e7fdddf8373f658caf939c9e1766d09c9c5835dd",
-                "reference": "e7fdddf8373f658caf939c9e1766d09c9c5835dd",
+                "url": "https://api.github.com/repos/php-etl/mapping-contracts/zipball/3782b391ea1968a189f622f5c6f0606345488116",
+                "reference": "3782b391ea1968a189f622f5c6f0606345488116",
                 "shasum": ""
             },
             "require": {
@@ -488,7 +488,7 @@
                 "issues": "https://github.com/php-etl/mapping-contracts/issues",
                 "source": "https://github.com/php-etl/mapping-contracts/tree/master"
             },
-            "time": "2021-02-02T14:12:14+00:00"
+            "time": "2021-02-08T16:00:01+00:00"
         },
         {
             "name": "php-etl/metadata",
@@ -916,12 +916,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/cache.git",
-                "reference": "c5a6aaae3d96e7a757836f285d3b84a3f47d73fa"
+                "reference": "7004ad588e2e75ad10d2c894d2ae913cdcb2ce44"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/cache/zipball/c5a6aaae3d96e7a757836f285d3b84a3f47d73fa",
-                "reference": "c5a6aaae3d96e7a757836f285d3b84a3f47d73fa",
+                "url": "https://api.github.com/repos/symfony/cache/zipball/7004ad588e2e75ad10d2c894d2ae913cdcb2ce44",
+                "reference": "7004ad588e2e75ad10d2c894d2ae913cdcb2ce44",
                 "shasum": ""
             },
             "require": {
@@ -942,7 +942,7 @@
             "provide": {
                 "psr/cache-implementation": "1.0|2.0",
                 "psr/simple-cache-implementation": "1.0",
-                "symfony/cache-implementation": "1.0"
+                "symfony/cache-implementation": "1.0|2.0"
             },
             "require-dev": {
                 "cache/integration-tests": "dev-master",
@@ -1004,7 +1004,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-02-04T17:52:48+00:00"
+            "time": "2021-02-08T10:24:30+00:00"
         },
         {
             "name": "symfony/cache-contracts",
