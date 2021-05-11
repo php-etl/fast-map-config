@@ -16,8 +16,6 @@ interface CompositeBuilderInterface extends MapperBuilderInterface
 
     public function expression(string $outputPath, string $expression): CompositeBuilderInterface;
 
-    public function repeated(string $outputPath, string $expression): CompositeBuilderInterface;
-
     public function list(string $outputPath, string $expression): ArrayBuilderInterface;
 
     public function map(string $outputPath, string $expression): ArrayBuilderInterface;

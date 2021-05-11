@@ -28,7 +28,7 @@ final class CompositeBuilder implements \IteratorAggregate, CompositeBuilderInte
         return $this->parent;
     }
 
-    public function merge(CompositeBuilderInterface ...$builders): CompositeBuilderInterface
+    public function merge(CompositeBuilderInterface ...$builders): self
     {
         foreach ($builders as $builder) {
             array_push($this->fields, ...$builder);
@@ -37,7 +37,7 @@ final class CompositeBuilder implements \IteratorAggregate, CompositeBuilderInte
         return $this;
     }
 
-    public function field(string $outputPath, Mapping\FieldMapperInterface $mapper): CompositeBuilderInterface
+    public function field(string $outputPath, Mapping\FieldMapperInterface $mapper): self
     {
         $this->fields[] = function () use ($outputPath, $mapper) {
             return new FastMap\Mapping\Field(
@@ -63,7 +63,7 @@ final class CompositeBuilder implements \IteratorAggregate, CompositeBuilderInte
         );
     }
 
-    public function copy(string $outputPath, string $inputPath): CompositeBuilderInterface
+    public function copy(string $outputPath, string $inputPath): self
     {
         $this->fields[] = function () use ($outputPath, $inputPath) {
             return new FastMap\Mapping\Field(
@@ -77,7 +77,7 @@ final class CompositeBuilder implements \IteratorAggregate, CompositeBuilderInte
         return $this;
     }
 
-    public function constant(string $outputPath, $value): CompositeBuilderInterface
+    public function constant(string $outputPath, $value): self
     {
         $this->fields[] = function () use ($outputPath, $value) {
             return new FastMap\Mapping\Field(
@@ -89,29 +89,15 @@ final class CompositeBuilder implements \IteratorAggregate, CompositeBuilderInte
         return $this;
     }
 
-    public function expression(string $outputPath, string $expression): CompositeBuilderInterface
+    public function expression(string $outputPath, string $expression, array $variables = []): self
     {
-        $this->fields[] = function () use ($outputPath, $expression) {
+        $this->fields[] = function () use ($outputPath, $expression, $variables) {
             return new FastMap\Mapping\Field(
                 new PropertyPath($outputPath),
                 new FastMap\Mapping\Field\ExpressionLanguageValueMapper(
                     $this->interpreter,
-                    new Expression($expression)
-                )
-            );
-        };
-
-        return $this;
-    }
-
-    public function repeated(string $outputPath, string $expression): CompositeBuilderInterface
-    {
-        $this->fields[] = function () use ($outputPath, $expression) {
-            return new FastMap\Mapping\RepeatedField(
-                new PropertyPath($outputPath),
-                new FastMap\Mapping\Field\ExpressionLanguageValueMapper(
-                    $this->interpreter,
-                    new Expression($expression)
+                    new Expression($expression),
+                    $variables,
                 )
             );
         };
