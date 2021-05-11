@@ -89,15 +89,15 @@ final class CompositeBuilder implements \IteratorAggregate, CompositeBuilderInte
         return $this;
     }
 
-    public function expression(string $outputPath, string $expression, array $variables = []): self
+    public function expression(string $outputPath, string $expression, array $additionalVariables = []): self
     {
-        $this->fields[] = function () use ($outputPath, $expression, $variables) {
+        $this->fields[] = function () use ($outputPath, $expression, $additionalVariables) {
             return new FastMap\Mapping\Field(
                 new PropertyPath($outputPath),
                 new FastMap\Mapping\Field\ExpressionLanguageValueMapper(
                     $this->interpreter,
                     new Expression($expression),
-                    $variables,
+                    $additionalVariables,
                 )
             );
         };
