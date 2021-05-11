@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "93334096d90b01e6f660ca742929ea8e",
+    "content-hash": "6f9b813262a82312d0fb8101f115d080",
     "packages": [
         {
             "name": "doctrine/inflector",
@@ -158,19 +158,19 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-etl/fast-map.git",
-                "reference": "3abc124253284a3321d6edcde257267d9ebed7e4"
+                "reference": "6b0e0bac1f08cba451f77c21e3e1ea2a97358763"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-etl/fast-map/zipball/3abc124253284a3321d6edcde257267d9ebed7e4",
-                "reference": "3abc124253284a3321d6edcde257267d9ebed7e4",
+                "url": "https://api.github.com/repos/php-etl/fast-map/zipball/6b0e0bac1f08cba451f77c21e3e1ea2a97358763",
+                "reference": "6b0e0bac1f08cba451f77c21e3e1ea2a97358763",
                 "shasum": ""
             },
             "require": {
                 "doctrine/inflector": "^2.0",
                 "nikic/php-parser": "^4.10",
                 "php": "^8.0",
-                "php-etl/mapping-contracts": "^0.1.0",
+                "php-etl/mapping-contracts": "^0.2.0",
                 "php-etl/metadata": "^0.2.0",
                 "php-etl/metadata-contracts": "^0.1.0",
                 "symfony/cache": "^5.4",
@@ -218,7 +218,7 @@
                 "issues": "https://github.com/php-etl/fast-map/issues",
                 "source": "https://github.com/php-etl/fast-map/tree/master"
             },
-            "time": "2021-05-04T22:19:56+00:00"
+            "time": "2021-05-11T18:45:19+00:00"
         },
         {
             "name": "php-etl/mapping-contracts",
@@ -226,12 +226,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-etl/mapping-contracts.git",
-                "reference": "3782b391ea1968a189f622f5c6f0606345488116"
+                "reference": "59acbc3f19791f0cee9a99c2e867e6605144c99b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-etl/mapping-contracts/zipball/3782b391ea1968a189f622f5c6f0606345488116",
-                "reference": "3782b391ea1968a189f622f5c6f0606345488116",
+                "url": "https://api.github.com/repos/php-etl/mapping-contracts/zipball/59acbc3f19791f0cee9a99c2e867e6605144c99b",
+                "reference": "59acbc3f19791f0cee9a99c2e867e6605144c99b",
                 "shasum": ""
             },
             "require": {
@@ -244,7 +244,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "0.1.x-dev"
+                    "dev-master": "0.2.x-dev"
                 }
             },
             "autoload": {
@@ -271,7 +271,7 @@
                 "issues": "https://github.com/php-etl/mapping-contracts/issues",
                 "source": "https://github.com/php-etl/mapping-contracts/tree/master"
             },
-            "time": "2021-02-08T16:00:01+00:00"
+            "time": "2021-05-11T18:42:26+00:00"
         },
         {
             "name": "php-etl/metadata",

@@ -20,7 +20,7 @@
         "symfony/property-access": "^5.2",
         "php-etl/fast-map": "^0.2.0",
         "php-etl/metadata": "^0.2.0",
-        "php-etl/mapping-contracts": "^0.1.0"
+        "php-etl/mapping-contracts": "^0.2.0"
     },
     "autoload": {
         "psr-4": {
@@ -37,7 +37,7 @@
     },
     "extra": {
         "branch-alias": {
-            "dev-master": "0.2.x-dev"
+            "dev-master": "0.3.x-dev"
         }
     },
     "require-dev": {
