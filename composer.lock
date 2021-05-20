@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "6f9b813262a82312d0fb8101f115d080",
+    "content-hash": "a02aa922a71a16dcc7fba4cea783ee31",
     "packages": [
         {
             "name": "doctrine/inflector",
@@ -158,12 +158,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-etl/fast-map.git",
-                "reference": "6b0e0bac1f08cba451f77c21e3e1ea2a97358763"
+                "reference": "4229bb6c0a13aef662c9deeb21b6d0f913617acd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-etl/fast-map/zipball/6b0e0bac1f08cba451f77c21e3e1ea2a97358763",
-                "reference": "6b0e0bac1f08cba451f77c21e3e1ea2a97358763",
+                "url": "https://api.github.com/repos/php-etl/fast-map/zipball/4229bb6c0a13aef662c9deeb21b6d0f913617acd",
+                "reference": "4229bb6c0a13aef662c9deeb21b6d0f913617acd",
                 "shasum": ""
             },
             "require": {
@@ -218,7 +218,7 @@
                 "issues": "https://github.com/php-etl/fast-map/issues",
                 "source": "https://github.com/php-etl/fast-map/tree/master"
             },
-            "time": "2021-05-11T18:45:19+00:00"
+            "time": "2021-05-19T21:46:49+00:00"
         },
         {
             "name": "php-etl/mapping-contracts",
