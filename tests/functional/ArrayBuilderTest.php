@@ -6,6 +6,7 @@ use Kiboko\Component\FastMap\Compiler;
 use Kiboko\Component\FastMap\PropertyAccess\EmptyPropertyPath;
 use Kiboko\Component\FastMapConfig\ArrayBuilder;
 use PHPUnit\Framework\TestCase;
+use Symfony\Component\ExpressionLanguage\Expression;
 use Symfony\Component\ExpressionLanguage\ExpressionFunction;
 use Symfony\Component\ExpressionLanguage\ExpressionLanguage;
 
@@ -93,7 +94,7 @@ final class ArrayBuilderTest extends TestCase
             ->list('[items]', 'merge( input["items"], input["shippings"] )')
                 ->children()
                 ->copy('[sku]', '[sku]')
-                ->expression('[price]', 'price( input["price"]["value"], input["price"]["currency"] )')
+                ->expression('[price]', new Expression('price( input["price"]["value"], input["price"]["currency"] )'))
                 ->end()
             ->end()
             ->end()
