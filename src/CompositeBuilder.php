@@ -105,7 +105,7 @@ final class CompositeBuilder implements \IteratorAggregate, CompositeBuilderInte
         return $this;
     }
 
-    public function list(string $outputPath, string $expression): ArrayBuilderInterface
+    public function list(string $outputPath, string|Expression $expression): ArrayBuilderInterface
     {
         $child = new ArrayBuilder($this, $this->interpreter);
 
@@ -113,7 +113,7 @@ final class CompositeBuilder implements \IteratorAggregate, CompositeBuilderInte
             return new FastMap\Mapping\ListField(
                 new PropertyPath($outputPath),
                 $this->interpreter,
-                new Expression($expression),
+                $expression instanceof Expression ? $expression : new Expression($expression),
                 $child->getMapper()
             );
         };
@@ -121,7 +121,7 @@ final class CompositeBuilder implements \IteratorAggregate, CompositeBuilderInte
         return $child;
     }
 
-    public function map(string $outputPath, string $expression): ArrayBuilderInterface
+    public function map(string $outputPath, string|Expression $expression): ArrayBuilderInterface
     {
         $child = new ArrayBuilder($this, $this->interpreter);
 
@@ -135,7 +135,7 @@ final class CompositeBuilder implements \IteratorAggregate, CompositeBuilderInte
         return $child;
     }
 
-    public function object(string $outputPath, string $className, string $expression): ObjectBuilderInterface
+    public function object(string $outputPath, string $className, string|Expression $expression): ObjectBuilderInterface
     {
         $child = new ObjectBuilder($className, $this, $this->interpreter);
 
@@ -143,7 +143,7 @@ final class CompositeBuilder implements \IteratorAggregate, CompositeBuilderInte
             return new FastMap\Mapping\SingleRelation(
                 new PropertyPath($outputPath),
                 $this->interpreter,
-                new Expression($expression),
+                $expression instanceof Expression ? $expression : new Expression($expression),
                 $child->getMapper()
             );
         };
@@ -151,7 +151,7 @@ final class CompositeBuilder implements \IteratorAggregate, CompositeBuilderInte
         return $child;
     }
 
-    public function collection(string $outputPath, string $className, string $expression): ObjectBuilderInterface
+    public function collection(string $outputPath, string $className, string|Expression $expression): ObjectBuilderInterface
     {
         $child = new ObjectBuilder($className, $this, $this->interpreter);
 
@@ -159,7 +159,7 @@ final class CompositeBuilder implements \IteratorAggregate, CompositeBuilderInte
             return new FastMap\Mapping\MultipleRelation(
                 new PropertyPath($outputPath),
                 $this->interpreter,
-                new Expression($expression),
+                $expression instanceof Expression ? $expression : new Expression($expression),
                 $child->getMapper()
             );
         };
