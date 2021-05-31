@@ -94,9 +94,71 @@ final class ArrayBuilderTest extends TestCase
             ->list('[items]', 'merge( input["items"], input["shippings"] )')
                 ->children()
                 ->copy('[sku]', '[sku]')
-                ->expression('[price]', new Expression('price( input["price"]["value"], input["price"]["currency"] )'))
+                ->expression('[price]', 'price( input["price"]["value"], input["price"]["currency"] )')
                 ->end()
             ->end()
+            ->end()
+            ->getMapper();
+
+        $compiler = new Compiler\Compiler(new Compiler\Strategy\Spaghetti());
+
+        $result = $compiler->compile(
+            Compiler\StandardCompilationContext::build(
+                new EmptyPropertyPath(), __DIR__, 'Foo\\ArraySpaghettiMapper'
+            ),
+            $mapper
+        );
+
+        $this->assertEquals(
+            [
+                "type" => "ORDER",
+                "items" => [
+                    ["sku" => "123456", "price" => '123.45 EUR'],
+                    ["sku" => "234567", "price" => '23.45 EUR'],
+                    ["sku" => "123456", "price" => '123.45 EUR'],
+                    ["sku" => "234567", "price" => '23.45 EUR']
+                ],
+                "customer" => [
+                    "first_name" => "John",
+                    "last_name" => "Doe"
+                ]
+            ],
+            $result($input)
+        );
+    }
+
+    /**
+     * @dataProvider validConfigProvider
+     */
+    public function testThatArrayCompilesWithExpression($input)
+    {
+        $interpreter = new ExpressionLanguage();
+        $interpreter->addFunction(ExpressionFunction::fromPhp('array_merge', 'merge'));
+        $interpreter->addFunction(
+            new ExpressionFunction(
+                'price',
+                function (string $value, string $currency)
+                {
+                    return sprintf('sprintf("%%s %%s", number_format(%s, 2), %s)', $value, $currency);
+                },
+                function (float $value, string $currency)
+                {
+                    return sprintf('%s %s', number_format($value, 2), $currency);
+                }
+            )
+        );
+
+        $mapper = (new ArrayBuilder(null, $interpreter))
+            ->children()
+                ->constant('[type]', 'ORDER')
+                ->copy('[customer][first_name]', '[customer][firstName]')
+                ->copy('[customer][last_name]', '[customer][lastName]')
+                ->list('[items]', 'merge( input["items"], input["shippings"] )')
+                    ->children()
+                        ->copy('[sku]', '[sku]')
+                        ->expression('[price]', new Expression('price( input["price"]["value"], input["price"]["currency"] )'))
+                    ->end()
+                ->end()
             ->end()
             ->getMapper();
 
