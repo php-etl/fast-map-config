@@ -14,6 +14,7 @@
         }
     ],
     "minimum-stability": "dev",
+    "prefer-stable": true,
     "require": {
         "php": "^8.0",
         "symfony/expression-language": "^5.2",
@@ -42,11 +43,8 @@
     },
     "require-dev": {
         "phpunit/phpunit": "^9.0",
-        "friends-of-phpspec/phpspec-code-coverage": "^6.0",
-        "phpspec/phpspec": "^7.0",
         "johnkary/phpunit-speedtrap": "*",
         "mybuilder/phpunit-accelerator": "*",
-        "phpunit/php-invoker": "*",
-        "php-etl/phpspec-extension": "^0.2@dev"
+        "phpunit/php-invoker": "*"
     }
 }

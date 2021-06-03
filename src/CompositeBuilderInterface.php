@@ -3,6 +3,7 @@
 namespace Kiboko\Component\FastMapConfig;
 
 use Kiboko\Contract\Mapping\FieldMapperInterface;
+use Symfony\Component\ExpressionLanguage\Expression;
 
 interface CompositeBuilderInterface extends MapperBuilderInterface
 {
@@ -14,13 +15,13 @@ interface CompositeBuilderInterface extends MapperBuilderInterface
 
     public function constant(string $outputPath, $value): CompositeBuilderInterface;
 
-    public function expression(string $outputPath, string $expression, array $additionalVariables = []): CompositeBuilderInterface;
+    public function expression(string $outputPath, string|Expression $expression, array $additionalVariables = []): CompositeBuilderInterface;
 
-    public function list(string $outputPath, string $expression): ArrayBuilderInterface;
+    public function list(string $outputPath, string|Expression $expression): ArrayBuilderInterface;
 
-    public function map(string $outputPath, string $expression): ArrayBuilderInterface;
+    public function map(string $outputPath, string|Expression $expression): ArrayBuilderInterface;
 
-    public function object(string $outputPath, string $className, string $expression): ObjectBuilderInterface;
+    public function object(string $outputPath, string $className, string|Expression $expression): ObjectBuilderInterface;
 
-    public function collection(string $outputPath, string $className, string $expression): ObjectBuilderInterface;
+    public function collection(string $outputPath, string $className, string|Expression $expression): ObjectBuilderInterface;
 }
