@@ -54,7 +54,7 @@ final class CompositeBuilder implements \IteratorAggregate, CompositeBuilderInte
         return $this->parent->getMapper();
     }
 
-    public function getIterator()
+    public function getIterator(): \Traversable
     {
         return new \ArrayIterator(
             array_map(function (callable $callback) {
