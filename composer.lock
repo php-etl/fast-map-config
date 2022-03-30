@@ -159,16 +159,16 @@
         },
         {
             "name": "php-etl/configurator-contracts",
-            "version": "dev-master",
+            "version": "v0.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-etl/configurator-contracts.git",
-                "reference": "b12f0723002e841d5a1da31711bcbe68f5cbbf53"
+                "reference": "46ffa3bd58a7c60a3150b6ccdf505d12d039a261"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-etl/configurator-contracts/zipball/b12f0723002e841d5a1da31711bcbe68f5cbbf53",
-                "reference": "b12f0723002e841d5a1da31711bcbe68f5cbbf53",
+                "url": "https://api.github.com/repos/php-etl/configurator-contracts/zipball/46ffa3bd58a7c60a3150b6ccdf505d12d039a261",
+                "reference": "46ffa3bd58a7c60a3150b6ccdf505d12d039a261",
                 "shasum": ""
             },
             "require": {
@@ -177,11 +177,10 @@
                 "php-etl/packaging-contracts": "^0.1.0",
                 "symfony/config": "^5.2"
             },
-            "default-branch": true,
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "0.3.x-dev"
+                    "dev-master": "0.4.x-dev"
                 }
             },
             "autoload": {
@@ -206,9 +205,9 @@
             "description": "This library describes contracts for defining configuration formats and building optimized code from it",
             "support": {
                 "issues": "https://github.com/php-etl/configurator-contracts/issues",
-                "source": "https://github.com/php-etl/configurator-contracts/tree/master"
+                "source": "https://github.com/php-etl/configurator-contracts/tree/v0.4.0"
             },
-            "time": "2021-05-31T08:41:48+00:00"
+            "time": "2021-09-26T19:30:48+00:00"
         },
         {
             "name": "php-etl/fast-map",
@@ -216,12 +215,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-etl/fast-map.git",
-                "reference": "20d0dbf0c3cdc216f61117cc85cf4f2bc1babe2d"
+                "reference": "f2a80b01b30a811e3bb6280541fcdf324984c767"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-etl/fast-map/zipball/20d0dbf0c3cdc216f61117cc85cf4f2bc1babe2d",
-                "reference": "20d0dbf0c3cdc216f61117cc85cf4f2bc1babe2d",
+                "url": "https://api.github.com/repos/php-etl/fast-map/zipball/f2a80b01b30a811e3bb6280541fcdf324984c767",
+                "reference": "f2a80b01b30a811e3bb6280541fcdf324984c767",
                 "shasum": ""
             },
             "require": {
@@ -231,7 +230,7 @@
                 "php-etl/mapping-contracts": "^0.2.0",
                 "php-etl/metadata": "^0.2.0",
                 "php-etl/metadata-contracts": "^0.1.0",
-                "php-etl/satellite-toolbox": "^0.1.0",
+                "php-etl/satellite-toolbox": "^0.1.0 || ^0.2.0",
                 "symfony/cache": "^5.2",
                 "symfony/expression-language": "^5.2",
                 "symfony/property-access": "^5.2"
@@ -277,20 +276,20 @@
                 "issues": "https://github.com/php-etl/fast-map/issues",
                 "source": "https://github.com/php-etl/fast-map/tree/master"
             },
-            "time": "2021-06-03T08:52:17+00:00"
+            "time": "2021-10-18T22:37:31+00:00"
         },
         {
             "name": "php-etl/mapping-contracts",
-            "version": "dev-master",
+            "version": "v0.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-etl/mapping-contracts.git",
-                "reference": "e11bf2ab286ac04f8931154da31e0f75b1a71678"
+                "reference": "6d69ed77a969278b6e5ca13209d7a5c0ca447844"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-etl/mapping-contracts/zipball/e11bf2ab286ac04f8931154da31e0f75b1a71678",
-                "reference": "e11bf2ab286ac04f8931154da31e0f75b1a71678",
+                "url": "https://api.github.com/repos/php-etl/mapping-contracts/zipball/6d69ed77a969278b6e5ca13209d7a5c0ca447844",
+                "reference": "6d69ed77a969278b6e5ca13209d7a5c0ca447844",
                 "shasum": ""
             },
             "require": {
@@ -299,7 +298,6 @@
                 "php-etl/metadata-contracts": "^0.1.0",
                 "symfony/property-access": "^5.2"
             },
-            "default-branch": true,
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -325,12 +323,12 @@
                     "email": "gregory@kiboko.fr"
                 }
             ],
-            "description": "Interfaces for FastMap",
+            "description": "Contracts for building compiled data mappers",
             "support": {
                 "issues": "https://github.com/php-etl/mapping-contracts/issues",
-                "source": "https://github.com/php-etl/mapping-contracts/tree/master"
+                "source": "https://github.com/php-etl/mapping-contracts/tree/v0.2.0"
             },
-            "time": "2021-05-27T14:08:03+00:00"
+            "time": "2021-09-26T20:04:54+00:00"
         },
         {
             "name": "php-etl/metadata",
@@ -446,16 +444,16 @@
         },
         {
             "name": "php-etl/packaging-contracts",
-            "version": "v0.1.0",
+            "version": "v0.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-etl/packaging-contracts.git",
-                "reference": "349dc9b75c75eb96bffbddd941c072354db83a81"
+                "reference": "1cea04542b05a721ec1433d4425247c2aaa47f0b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-etl/packaging-contracts/zipball/349dc9b75c75eb96bffbddd941c072354db83a81",
-                "reference": "349dc9b75c75eb96bffbddd941c072354db83a81",
+                "url": "https://api.github.com/repos/php-etl/packaging-contracts/zipball/1cea04542b05a721ec1433d4425247c2aaa47f0b",
+                "reference": "1cea04542b05a721ec1433d4425247c2aaa47f0b",
                 "shasum": ""
             },
             "require": {
@@ -490,9 +488,9 @@
             "description": "This library aims at providing contracts for building TAR archives, using PHP resources and streams",
             "support": {
                 "issues": "https://github.com/php-etl/packaging-contracts/issues",
-                "source": "https://github.com/php-etl/packaging-contracts/tree/v0.1.0"
+                "source": "https://github.com/php-etl/packaging-contracts/tree/v0.1.1"
             },
-            "time": "2021-05-28T15:26:06+00:00"
+            "time": "2021-09-26T19:38:57+00:00"
         },
         {
             "name": "php-etl/satellite-toolbox",
@@ -500,23 +498,25 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-etl/satellite-toolbox.git",
-                "reference": "832d2244e6c31a6c76b65098ac41cb4fbee3feac"
+                "reference": "5d2992195d110f12e1fccb05b254e75e42363dd9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-etl/satellite-toolbox/zipball/832d2244e6c31a6c76b65098ac41cb4fbee3feac",
-                "reference": "832d2244e6c31a6c76b65098ac41cb4fbee3feac",
+                "url": "https://api.github.com/repos/php-etl/satellite-toolbox/zipball/5d2992195d110f12e1fccb05b254e75e42363dd9",
+                "reference": "5d2992195d110f12e1fccb05b254e75e42363dd9",
                 "shasum": ""
             },
             "require": {
                 "nikic/php-parser": "^4.10",
                 "php": "^8.0",
-                "php-etl/configurator-contracts": "^0.3.0",
+                "php-etl/configurator-contracts": "^0.4.0@dev",
                 "symfony/expression-language": "^5.2"
             },
             "require-dev": {
+                "adlawson/vfs": "dev-develop",
                 "johnkary/phpunit-speedtrap": "*",
                 "mybuilder/phpunit-accelerator": "*",
+                "php-etl/phpunit-extension": "^0.2.0@dev",
                 "phpunit/php-invoker": "*",
                 "phpunit/phpunit": "^9.0"
             },
@@ -524,16 +524,17 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "0.1.x-dev"
+                    "dev-master": "0.2.x-dev"
                 }
             },
             "autoload": {
+                "files": [
+                    "src/ast.php",
+                    "src/configuration.php"
+                ],
                 "psr-4": {
                     "Kiboko\\Component\\SatelliteToolbox\\": "src/"
-                },
-                "files": [
-                    "src/configuration.php"
-                ]
+                }
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -554,7 +555,7 @@
                 "issues": "https://github.com/php-etl/satellite-toolbox/issues",
                 "source": "https://github.com/php-etl/satellite-toolbox/tree/master"
             },
-            "time": "2021-06-01T15:07:51+00:00"
+            "time": "2021-12-03T10:50:38+00:00"
         },
         {
             "name": "phpactor/docblock",
@@ -4163,5 +4164,5 @@
         "php": "^8.0"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.0.0"
+    "plugin-api-version": "2.1.0"
 }
