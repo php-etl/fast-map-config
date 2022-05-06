@@ -121,11 +121,11 @@ final class CompositeBuilder implements \IteratorAggregate, CompositeBuilderInte
         return $child;
     }
 
-    public function map(string $outputPath, string|Expression $expression): ArrayBuilderInterface
+    public function map(string $outputPath): ArrayBuilderInterface
     {
         $child = new ArrayBuilder($this, $this->interpreter);
 
-        $this->fields[] = function () use ($child, $outputPath, $expression) {
+        $this->fields[] = function () use ($child, $outputPath) {
             return new FastMap\Mapping\Field(
                 new PropertyPath($outputPath),
                 $child->getMapper()
