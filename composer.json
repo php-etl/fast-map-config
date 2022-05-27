@@ -21,7 +21,7 @@
         "symfony/property-access": "^5.2",
         "php-etl/metadata": "^0.2.0",
         "php-etl/mapping-contracts": "^0.2.0",
-        "php-etl/fast-map": "dev-feature/update-satellite-toolbox"
+        "php-etl/fast-map": "^0.3.0"
     },
     "autoload": {
         "psr-4": {

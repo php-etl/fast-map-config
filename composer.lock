@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "9d8c78964e189a6808f0f79c60d20dcf",
+    "content-hash": "a851486e0e23290ee60ad64c8dc8d2ca",
     "packages": [
         {
             "name": "doctrine/inflector",
@@ -210,16 +210,16 @@
         },
         {
             "name": "php-etl/fast-map",
-            "version": "dev-feature/update-satellite-toolbox",
+            "version": "dev-main",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-etl/fast-map.git",
-                "reference": "37c5a71bc269234b5010e0ff1b87647262b3cf44"
+                "reference": "30903f07f39211ab9eafec021dcf7005b8bd0099"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-etl/fast-map/zipball/37c5a71bc269234b5010e0ff1b87647262b3cf44",
-                "reference": "37c5a71bc269234b5010e0ff1b87647262b3cf44",
+                "url": "https://api.github.com/repos/php-etl/fast-map/zipball/30903f07f39211ab9eafec021dcf7005b8bd0099",
+                "reference": "30903f07f39211ab9eafec021dcf7005b8bd0099",
                 "shasum": ""
             },
             "require": {
@@ -244,6 +244,7 @@
                 "phpunit/php-invoker": "*",
                 "phpunit/phpunit": "^9.0"
             },
+            "default-branch": true,
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -272,9 +273,9 @@
             "description": "This library implements a compiled data mapping library",
             "support": {
                 "issues": "https://github.com/php-etl/fast-map/issues",
-                "source": "https://github.com/php-etl/fast-map/tree/feature/update-satellite-toolbox"
+                "source": "https://github.com/php-etl/fast-map/tree/main"
             },
-            "time": "2022-05-27T08:16:20+00:00"
+            "time": "2022-05-27T08:57:42+00:00"
         },
         {
             "name": "php-etl/mapping-contracts",
@@ -4254,9 +4255,7 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": {
-        "php-etl/fast-map": 20
-    },
+    "stability-flags": [],
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
