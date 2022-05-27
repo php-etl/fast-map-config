@@ -62,6 +62,7 @@ jobs:
                 with:
                     path: src/
                     args: --level=${{ matrix.phpstan-level }}
+                    php_version: 8.1
 
     infection:
         runs-on: ubuntu-latest
