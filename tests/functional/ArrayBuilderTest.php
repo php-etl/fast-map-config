@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace functional\Kiboko\Component\FastMapConfig;
 
@@ -10,9 +12,18 @@ use Symfony\Component\ExpressionLanguage\Expression;
 use Symfony\Component\ExpressionLanguage\ExpressionFunction;
 use Symfony\Component\ExpressionLanguage\ExpressionLanguage;
 
+/**
+ * @internal
+ */
+#[\PHPUnit\Framework\Attributes\CoversNothing]
+/**
+ * @internal
+ *
+ * @coversNothing
+ */
 final class ArrayBuilderTest extends TestCase
 {
-    public function validConfigProvider(): \Generator
+    public static function validConfigProvider(): \Generator
     {
         yield [
             'input' => [
@@ -61,28 +72,21 @@ final class ArrayBuilderTest extends TestCase
                         ],
                     ],
                 ],
-            ]
+            ],
         ];
     }
 
-    /**
-     * @dataProvider validConfigProvider
-     */
-    public function testThatArrayCompiles($input)
+    #[\PHPUnit\Framework\Attributes\DataProvider('validConfigProvider')]
+    #[\PHPUnit\Framework\Attributes\Test]
+    public function thatArrayCompiles(mixed $input): void
     {
         $interpreter = new ExpressionLanguage();
         $interpreter->addFunction(ExpressionFunction::fromPhp('array_merge', 'merge'));
         $interpreter->addFunction(
             new ExpressionFunction(
-            'price',
-                function (string $value, string $currency)
-                {
-                    return sprintf('sprintf("%%s %%s", number_format(%s, 2), %s)', $value, $currency);
-                },
-                function (float $value, string $currency)
-                {
-                    return sprintf('%s %s', number_format($value, 2), $currency);
-                }
+                'price',
+                fn (string $value, string $currency) => sprintf('sprintf("%%s %%s", number_format(%s, 2), %s)', $value, $currency),
+                fn (float $value, string $currency) => sprintf('%s %s', number_format($value, 2), $currency)
             )
         );
 
@@ -92,13 +96,14 @@ final class ArrayBuilderTest extends TestCase
             ->copy('[customer][first_name]', '[customer][firstName]')
             ->copy('[customer][last_name]', '[customer][lastName]')
             ->list('[items]', 'merge( input["items"], input["shippings"] )')
-                ->children()
-                ->copy('[sku]', '[sku]')
-                ->expression('[price]', 'price( input["price"]["value"], input["price"]["currency"] )')
-                ->end()
+            ->children()
+            ->copy('[sku]', '[sku]')
+            ->expression('[price]', 'price( input["price"]["value"], input["price"]["currency"] )')
             ->end()
             ->end()
-            ->getMapper();
+            ->end()
+            ->getMapper()
+        ;
 
         $compiler = new Compiler\Compiler(new Compiler\Strategy\Spaghetti());
 
@@ -111,56 +116,50 @@ final class ArrayBuilderTest extends TestCase
 
         $this->assertEquals(
             [
-                "type" => "ORDER",
-                "items" => [
-                    ["sku" => "123456", "price" => '123.45 EUR'],
-                    ["sku" => "234567", "price" => '23.45 EUR'],
-                    ["sku" => "123456", "price" => '123.45 EUR'],
-                    ["sku" => "234567", "price" => '23.45 EUR']
+                'type' => 'ORDER',
+                'items' => [
+                    ['sku' => '123456', 'price' => '123.45 EUR'],
+                    ['sku' => '234567', 'price' => '23.45 EUR'],
+                    ['sku' => '123456', 'price' => '123.45 EUR'],
+                    ['sku' => '234567', 'price' => '23.45 EUR'],
                 ],
-                "customer" => [
-                    "first_name" => "John",
-                    "last_name" => "Doe"
-                ]
+                'customer' => [
+                    'first_name' => 'John',
+                    'last_name' => 'Doe',
+                ],
             ],
             $result($input)
         );
     }
 
-    /**
-     * @dataProvider validConfigProvider
-     */
-    public function testThatArrayCompilesWithExpression($input)
+    #[\PHPUnit\Framework\Attributes\DataProvider('validConfigProvider')]
+    #[\PHPUnit\Framework\Attributes\Test]
+    public function thatArrayCompilesWithExpression(mixed $input): void
     {
         $interpreter = new ExpressionLanguage();
         $interpreter->addFunction(ExpressionFunction::fromPhp('array_merge', 'merge'));
         $interpreter->addFunction(
             new ExpressionFunction(
                 'price',
-                function (string $value, string $currency)
-                {
-                    return sprintf('sprintf("%%s %%s", number_format(%s, 2), %s)', $value, $currency);
-                },
-                function (float $value, string $currency)
-                {
-                    return sprintf('%s %s', number_format($value, 2), $currency);
-                }
+                fn (string $value, string $currency) => sprintf('sprintf("%%s %%s", number_format(%s, 2), %s)', $value, $currency),
+                fn (float $value, string $currency) => sprintf('%s %s', number_format($value, 2), $currency)
             )
         );
 
         $mapper = (new ArrayBuilder(null, $interpreter))
             ->children()
-                ->constant('[type]', 'ORDER')
-                ->copy('[customer][first_name]', '[customer][firstName]')
-                ->copy('[customer][last_name]', '[customer][lastName]')
-                ->list('[items]', 'merge( input["items"], input["shippings"] )')
-                    ->children()
-                        ->copy('[sku]', '[sku]')
-                        ->expression('[price]', new Expression('price( input["price"]["value"], input["price"]["currency"] )'))
-                    ->end()
-                ->end()
+            ->constant('[type]', 'ORDER')
+            ->copy('[customer][first_name]', '[customer][firstName]')
+            ->copy('[customer][last_name]', '[customer][lastName]')
+            ->list('[items]', 'merge( input["items"], input["shippings"] )')
+            ->children()
+            ->copy('[sku]', '[sku]')
+            ->expression('[price]', new Expression('price( input["price"]["value"], input["price"]["currency"] )'))
             ->end()
-            ->getMapper();
+            ->end()
+            ->end()
+            ->getMapper()
+        ;
 
         $compiler = new Compiler\Compiler(new Compiler\Strategy\Spaghetti());
 
@@ -173,17 +172,17 @@ final class ArrayBuilderTest extends TestCase
 
         $this->assertEquals(
             [
-                "type" => "ORDER",
-                "items" => [
-                    ["sku" => "123456", "price" => '123.45 EUR'],
-                    ["sku" => "234567", "price" => '23.45 EUR'],
-                    ["sku" => "123456", "price" => '123.45 EUR'],
-                    ["sku" => "234567", "price" => '23.45 EUR']
+                'type' => 'ORDER',
+                'items' => [
+                    ['sku' => '123456', 'price' => '123.45 EUR'],
+                    ['sku' => '234567', 'price' => '23.45 EUR'],
+                    ['sku' => '123456', 'price' => '123.45 EUR'],
+                    ['sku' => '234567', 'price' => '23.45 EUR'],
                 ],
-                "customer" => [
-                    "first_name" => "John",
-                    "last_name" => "Doe"
-                ]
+                'customer' => [
+                    'first_name' => 'John',
+                    'last_name' => 'Doe',
+                ],
             ],
             $result($input)
         );
@@ -192,7 +191,8 @@ final class ArrayBuilderTest extends TestCase
     /**
      * @dataprovider validConfigProvider
      */
-    public function testFailIfNoParent()
+    #[\PHPUnit\Framework\Attributes\Test]
+    public function failIfNoParent(): void
     {
         $this->expectExceptionMessage('Could not find parent object, aborting.');
 

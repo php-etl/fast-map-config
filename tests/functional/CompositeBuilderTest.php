@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace functional\Kiboko\Component\FastMapConfig;
 
@@ -10,9 +12,18 @@ use PHPUnit\Framework\TestCase;
 use Symfony\Component\ExpressionLanguage\ExpressionFunction;
 use Symfony\Component\ExpressionLanguage\ExpressionLanguage;
 
+/**
+ * @internal
+ */
+#[\PHPUnit\Framework\Attributes\CoversNothing]
+/**
+ * @internal
+ *
+ * @coversNothing
+ */
 final class CompositeBuilderTest extends TestCase
 {
-    public function validConfigProvider(): \Generator
+    public static function validConfigProvider(): \Generator
     {
         yield [
             'input' => [
@@ -61,14 +72,13 @@ final class CompositeBuilderTest extends TestCase
                         ],
                     ],
                 ],
-            ]
+            ],
         ];
     }
 
-    /**
-     * @dataProvider validConfigProvider
-     */
-    public function testThatCompositeBuilderCompiles($input)
+    #[\PHPUnit\Framework\Attributes\DataProvider('validConfigProvider')]
+    #[\PHPUnit\Framework\Attributes\Test]
+    public function thatCompositeBuilderCompiles(mixed $input): void
     {
         $interpreter = new ExpressionLanguage();
         $interpreter->addFunction(ExpressionFunction::fromPhp('array_merge', 'merge'));
@@ -82,7 +92,8 @@ final class CompositeBuilderTest extends TestCase
             ->copy('[sku]', '[sku]')
             ->end()
             ->end()
-            ->getMapper();
+            ->getMapper()
+        ;
 
         $compiler = new Compiler\Compiler(new Compiler\Strategy\Spaghetti());
 
@@ -99,7 +110,8 @@ final class CompositeBuilderTest extends TestCase
         );
     }
 
-    public function testFailIfNoParent()
+    #[\PHPUnit\Framework\Attributes\Test]
+    public function failIfNoParent(): void
     {
         $this->expectExceptionMessage('Could not find parent object, aborting.');
 
@@ -109,7 +121,8 @@ final class CompositeBuilderTest extends TestCase
         $mapper->end();
     }
 
-    public function testFailedToMerge()
+    #[\PHPUnit\Framework\Attributes\Test]
+    public function failedToMerge(): void
     {
         $interpreter = new ExpressionLanguage();
         $mapper = (new CompositeBuilder(null, $interpreter));
