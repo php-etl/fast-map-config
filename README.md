@@ -1,6 +1,15 @@
 FastMap Config, a fluent interface for configuring your mappings
 ===
 
+[![Quality (PHPStan lvl 4)](https://github.com/php-etl/fast-map-config/actions/workflows/quality.yaml/badge.svg)](https://github.com/php-etl/fast-map-config/actions/workflows/quality.yaml)
+[![PHPUnit](https://github.com/php-etl/fast-map-config/actions/workflows/phpunit.yaml/badge.svg)](https://github.com/php-etl/fast-map-config/actions/workflows/phpunit.yaml)
+[![Infection](https://github.com/php-etl/fast-map-config/actions/workflows/infection.yaml/badge.svg)](https://github.com/php-etl/fast-map-config/actions/workflows/infection.yaml)
+[![PHPStan level 5](https://github.com/php-etl/fast-map-config/actions/workflows/phpstan-5.yaml/badge.svg)](https://github.com/php-etl/fast-map-config/actions/workflows/phpstan-5.yaml)
+[![PHPStan level 6](https://github.com/php-etl/fast-map-config/actions/workflows/phpstan-6.yaml/badge.svg)](https://github.com/php-etl/fast-map-config/actions/workflows/phpstan-6.yaml)
+[![PHPStan level 7](https://github.com/php-etl/fast-map-config/actions/workflows/phpstan-7.yaml/badge.svg)](https://github.com/php-etl/fast-map-config/actions/workflows/phpstan-7.yaml)
+[![PHPStan level 8](https://github.com/php-etl/fast-map-config/actions/workflows/phpstan-8.yaml/badge.svg)](https://github.com/php-etl/fast-map-config/actions/workflows/phpstan-8.yaml)
+![PHP](https://img.shields.io/packagist/php-v/php-etl/fast-map-config)
+
 Example 1: configure mapping for an array
 ---
 

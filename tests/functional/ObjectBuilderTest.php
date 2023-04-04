@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace functional\Kiboko\Component\FastMapConfig;
 
@@ -7,9 +9,19 @@ use Kiboko\Component\FastMap\PropertyAccess\EmptyPropertyPath;
 use Kiboko\Component\FastMapConfig\ObjectBuilder;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * @internal
+ */
+#[\PHPUnit\Framework\Attributes\CoversNothing]
+/**
+ * @internal
+ *
+ * @coversNothing
+ */
 final class ObjectBuilderTest extends TestCase
 {
-    public function testThatBuilderHasCorrectArguments ()
+    #[\PHPUnit\Framework\Attributes\Test]
+    public function thatBuilderHasCorrectArguments(): void
     {
         $builder = (new ObjectBuilder(
             'functional\Kiboko\Component\FastMapConfig\Customer',
@@ -26,7 +38,7 @@ final class ObjectBuilderTest extends TestCase
 
         /** @var Customer $customer */
         $customer = $result([
-            'name' => 'Jean'
+            'name' => 'Jean',
         ]);
 
         $this->assertInstanceOf(

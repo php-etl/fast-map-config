@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace Kiboko\Component\FastMapConfig;
 
@@ -10,21 +12,19 @@ use Symfony\Component\PropertyAccess\PropertyPath;
 
 final class CompositeBuilder implements \IteratorAggregate, CompositeBuilderInterface
 {
-    private ExpressionLanguage $interpreter;
     /** @var Mapping\FieldScopingInterface[] */
-    private array $fields;
+    private array $fields = [];
 
-    public function __construct(private ?MapperBuilderInterface $parent = null, ?ExpressionLanguage $interpreter = null)
+    public function __construct(private readonly ?MapperBuilderInterface $parent = null, private readonly ExpressionLanguage $interpreter = new ExpressionLanguage())
     {
-        $this->interpreter = $interpreter ?? new ExpressionLanguage();
-        $this->fields = [];
     }
 
     public function end(): ?MapperBuilderInterface
     {
-        if ($this->parent === null) {
+        if (null === $this->parent) {
             throw new \BadMethodCallException('Could not find parent object, aborting.');
         }
+
         return $this->parent;
     }
 
@@ -39,12 +39,10 @@ final class CompositeBuilder implements \IteratorAggregate, CompositeBuilderInte
 
     public function field(string $outputPath, Mapping\FieldMapperInterface $mapper): self
     {
-        $this->fields[] = function () use ($outputPath, $mapper) {
-            return new FastMap\Mapping\Field(
-                new PropertyPath($outputPath),
-                $mapper
-            );
-        };
+        $this->fields[] = fn () => new FastMap\Mapping\Field(
+            new PropertyPath($outputPath),
+            $mapper
+        );
 
         return $this;
     }
@@ -57,50 +55,42 @@ final class CompositeBuilder implements \IteratorAggregate, CompositeBuilderInte
     public function getIterator(): \Traversable
     {
         return new \ArrayIterator(
-            array_map(function (callable $callback) {
-                return $callback([], []);
-            }, $this->fields)
+            array_map(fn (callable $callback) => $callback([], []), $this->fields)
         );
     }
 
     public function copy(string $outputPath, string $inputPath): self
     {
-        $this->fields[] = function () use ($outputPath, $inputPath) {
-            return new FastMap\Mapping\Field(
-                new PropertyPath($outputPath),
-                new FastMap\Mapping\Field\CopyValueMapper(
-                    new PropertyPath($inputPath)
-                )
-            );
-        };
+        $this->fields[] = fn () => new FastMap\Mapping\Field(
+            new PropertyPath($outputPath),
+            new FastMap\Mapping\Field\CopyValueMapper(
+                new PropertyPath($inputPath)
+            )
+        );
 
         return $this;
     }
 
     public function constant(string $outputPath, $value): self
     {
-        $this->fields[] = function () use ($outputPath, $value) {
-            return new FastMap\Mapping\Field(
-                new PropertyPath($outputPath),
-                new FastMap\Mapping\Field\ConstantValueMapper($value)
-            );
-        };
+        $this->fields[] = fn () => new FastMap\Mapping\Field(
+            new PropertyPath($outputPath),
+            new FastMap\Mapping\Field\ConstantValueMapper($value)
+        );
 
         return $this;
     }
 
     public function expression(string $outputPath, string|Expression $expression, array $additionalVariables = []): self
     {
-        $this->fields[] = function () use ($outputPath, $expression, $additionalVariables) {
-            return new FastMap\Mapping\Field(
-                new PropertyPath($outputPath),
-                new FastMap\Mapping\Field\ExpressionLanguageValueMapper(
-                    $this->interpreter,
-                    $expression instanceof Expression ? $expression : new Expression($expression),
-                    $additionalVariables,
-                )
-            );
-        };
+        $this->fields[] = fn () => new FastMap\Mapping\Field(
+            new PropertyPath($outputPath),
+            new FastMap\Mapping\Field\ExpressionLanguageValueMapper(
+                $this->interpreter,
+                $expression instanceof Expression ? $expression : new Expression($expression),
+                $additionalVariables,
+            )
+        );
 
         return $this;
     }
@@ -109,14 +99,12 @@ final class CompositeBuilder implements \IteratorAggregate, CompositeBuilderInte
     {
         $child = new ArrayBuilder($this, $this->interpreter);
 
-        $this->fields[] = function () use ($child, $outputPath, $expression) {
-            return new FastMap\Mapping\ListField(
-                new PropertyPath($outputPath),
-                $this->interpreter,
-                $expression instanceof Expression ? $expression : new Expression($expression),
-                $child->getMapper()
-            );
-        };
+        $this->fields[] = fn () => new FastMap\Mapping\ListField(
+            new PropertyPath($outputPath),
+            $this->interpreter,
+            $expression instanceof Expression ? $expression : new Expression($expression),
+            $child->getMapper()
+        );
 
         return $child;
     }
@@ -125,12 +113,10 @@ final class CompositeBuilder implements \IteratorAggregate, CompositeBuilderInte
     {
         $child = new ArrayBuilder($this, $this->interpreter);
 
-        $this->fields[] = function () use ($child, $outputPath, $expression) {
-            return new FastMap\Mapping\Field(
-                new PropertyPath($outputPath),
-                $child->getMapper()
-            );
-        };
+        $this->fields[] = fn () => new FastMap\Mapping\Field(
+            new PropertyPath($outputPath),
+            $child->getMapper()
+        );
 
         return $child;
     }
@@ -139,14 +125,12 @@ final class CompositeBuilder implements \IteratorAggregate, CompositeBuilderInte
     {
         $child = new ObjectBuilder($className, $this, $this->interpreter);
 
-        $this->fields[] = function () use ($child, $outputPath, $expression) {
-            return new FastMap\Mapping\SingleRelation(
-                new PropertyPath($outputPath),
-                $this->interpreter,
-                $expression instanceof Expression ? $expression : new Expression($expression),
-                $child->getMapper()
-            );
-        };
+        $this->fields[] = fn () => new FastMap\Mapping\SingleRelation(
+            new PropertyPath($outputPath),
+            $this->interpreter,
+            $expression instanceof Expression ? $expression : new Expression($expression),
+            $child->getMapper()
+        );
 
         return $child;
     }
@@ -155,14 +139,12 @@ final class CompositeBuilder implements \IteratorAggregate, CompositeBuilderInte
     {
         $child = new ObjectBuilder($className, $this, $this->interpreter);
 
-        $this->fields[] = function () use ($child, $outputPath, $expression) {
-            return new FastMap\Mapping\MultipleRelation(
-                new PropertyPath($outputPath),
-                $this->interpreter,
-                $expression instanceof Expression ? $expression : new Expression($expression),
-                $child->getMapper()
-            );
-        };
+        $this->fields[] = fn () => new FastMap\Mapping\MultipleRelation(
+            new PropertyPath($outputPath),
+            $this->interpreter,
+            $expression instanceof Expression ? $expression : new Expression($expression),
+            $child->getMapper()
+        );
 
         return $child;
     }

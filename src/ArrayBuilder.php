@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace Kiboko\Component\FastMapConfig;
 
@@ -6,14 +8,12 @@ use Kiboko\Component\FastMap\Mapping\Composite\ArrayMapper;
 use Kiboko\Contract\Mapping\ArrayMapperInterface;
 use Symfony\Component\ExpressionLanguage\ExpressionLanguage;
 
-final class ArrayBuilder implements ArrayBuilderInterface
+final readonly class ArrayBuilder implements ArrayBuilderInterface
 {
-    private ExpressionLanguage $interpreter;
     private CompositeBuilder $composition;
 
-    public function __construct(private ?MapperBuilderInterface $parent = null, ?ExpressionLanguage $interpreter = null)
+    public function __construct(private ?MapperBuilderInterface $parent = null, private ExpressionLanguage $interpreter = new ExpressionLanguage())
     {
-        $this->interpreter = $interpreter ?? new ExpressionLanguage();
         $this->composition = new CompositeBuilder($this, $this->interpreter);
     }
 
@@ -24,9 +24,10 @@ final class ArrayBuilder implements ArrayBuilderInterface
 
     public function end(): ?MapperBuilderInterface
     {
-        if ($this->parent === null) {
+        if (null === $this->parent) {
             throw new \BadMethodCallException('Could not find parent object, aborting.');
         }
+
         return $this->parent;
     }
 

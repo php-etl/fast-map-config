@@ -1,28 +1,27 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace Kiboko\Component\FastMapConfig;
 
 use Kiboko\Component\FastMap\Mapping\Composite\ObjectAppendMapper;
 use Kiboko\Component\FastMap\SimpleObjectInitializer;
 use Kiboko\Component\Metadata;
-use Kiboko\Contract\Mapping;
 use Symfony\Component\ExpressionLanguage\Expression;
 use Symfony\Component\ExpressionLanguage\ExpressionLanguage;
 
 final class ObjectAppendBuilder implements ObjectBuilderInterface
 {
-    private CompositeBuilder $composition;
-    /** @var Mapping\FieldScopingInterface[] */
-    private array $arguments;
+    private readonly CompositeBuilder $composition;
+    /** @var array<int|string, Expression> */
+    private array $arguments = [];
 
     public function __construct(
-        private string $className,
-        private ?MapperBuilderInterface $parent = null,
-        private ?ExpressionLanguage $interpreter = null
+        private readonly string $className,
+        private readonly ?MapperBuilderInterface $parent = null,
+        private readonly ExpressionLanguage $interpreter = new ExpressionLanguage()
     ) {
-        $this->interpreter = $interpreter ?? new ExpressionLanguage();
         $this->composition = new CompositeBuilder($this, $this->interpreter);
-        $this->arguments = [];
     }
 
     public function children(): CompositeBuilderInterface
@@ -32,17 +31,16 @@ final class ObjectAppendBuilder implements ObjectBuilderInterface
 
     public function end(): ?MapperBuilderInterface
     {
-        if ($this->parent === null) {
+        if (null === $this->parent) {
             throw new \BadMethodCallException('Could not find parent object, aborting.');
         }
+
         return $this->parent;
     }
 
     public function arguments(string ...$expressions): ObjectBuilderInterface
     {
-        $this->arguments = array_map(function ($expression) {
-            return new Expression($expression);
-        }, $expressions);
+        $this->arguments = array_map(fn ($expression) => new Expression($expression), $expressions);
 
         return $this;
     }
@@ -71,7 +69,7 @@ final class ObjectAppendBuilder implements ObjectBuilderInterface
     private function getNamespace(): string
     {
         if ($pos = strrpos($this->className, '\\')) {
-            return substr($this->className, 0, -strlen($this->getClassName()) - 1);
+            return substr($this->className, 0, -\strlen($this->getClassName()) - 1);
         }
 
         return $this->className;

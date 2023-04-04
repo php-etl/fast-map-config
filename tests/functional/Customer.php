@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace functional\Kiboko\Component\FastMapConfig;
 
@@ -6,7 +8,8 @@ final class Customer
 {
     public function __construct(
         public string $name
-    ) {}
+    ) {
+    }
 
     public function getName(): string
     {
