@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "fb053455514b170947083694976836f1",
+    "content-hash": "3a7b226dbaee89ebc13f7ccf72f6ae5a",
     "packages": [
         {
             "name": "doctrine/inflector",
@@ -159,27 +159,25 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-etl/configurator-contracts.git",
-                "reference": "96ea3a64dc21c5ee78a815ef0b107493d87e077d"
+                "reference": "a8011fab7af398848ebb4068698e53eb2b7a21c0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-etl/configurator-contracts/zipball/96ea3a64dc21c5ee78a815ef0b107493d87e077d",
-                "reference": "96ea3a64dc21c5ee78a815ef0b107493d87e077d",
+                "url": "https://api.github.com/repos/php-etl/configurator-contracts/zipball/a8011fab7af398848ebb4068698e53eb2b7a21c0",
+                "reference": "a8011fab7af398848ebb4068698e53eb2b7a21c0",
                 "shasum": ""
             },
             "require": {
                 "nikic/php-parser": "^4.10",
                 "php": "^8.2",
-                "php-etl/packaging-contracts": "^0.3",
+                "php-etl/packaging-contracts": "0.3.0",
                 "psr/log": "^3.0",
                 "symfony/config": "^6.0",
                 "symfony/expression-language": "^6.0"
             },
             "require-dev": {
                 "friendsofphp/php-cs-fixer": "^3.0",
-                "infection/infection": "^0.26.18",
                 "phpstan/phpstan": "^1.10",
-                "phpunit/phpunit": "^10.0",
                 "rector/rector": "^0.15"
             },
             "type": "library",
@@ -212,7 +210,7 @@
                 "issues": "https://github.com/php-etl/configurator-contracts/issues",
                 "source": "https://github.com/php-etl/configurator-contracts/tree/v0.7.0"
             },
-            "time": "2023-04-03T13:59:28+00:00"
+            "time": "2023-04-06T10:24:39+00:00"
         },
         {
             "name": "php-etl/fast-map",
@@ -220,22 +218,22 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-etl/fast-map.git",
-                "reference": "83d27d4d2789b7b62c262fccb853a64538834d4f"
+                "reference": "2b3db46d02202ff983fff51e522d67da9cf441e7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-etl/fast-map/zipball/83d27d4d2789b7b62c262fccb853a64538834d4f",
-                "reference": "83d27d4d2789b7b62c262fccb853a64538834d4f",
+                "url": "https://api.github.com/repos/php-etl/fast-map/zipball/2b3db46d02202ff983fff51e522d67da9cf441e7",
+                "reference": "2b3db46d02202ff983fff51e522d67da9cf441e7",
                 "shasum": ""
             },
             "require": {
                 "doctrine/inflector": "^2.0",
                 "nikic/php-parser": "^4.10",
                 "php": "^8.2",
-                "php-etl/mapping-contracts": "^0.4.0",
-                "php-etl/metadata": "^0.4.0",
-                "php-etl/metadata-contracts": "^0.2.0",
-                "php-etl/satellite-toolbox": "^0.5.0",
+                "php-etl/mapping-contracts": "0.4.0",
+                "php-etl/metadata": "*",
+                "php-etl/metadata-contracts": "0.2.0",
+                "php-etl/satellite-toolbox": "*",
                 "symfony/cache": "^6.0",
                 "symfony/expression-language": "^6.0",
                 "symfony/property-access": "^6.0"
@@ -243,6 +241,7 @@
             "require-dev": {
                 "friendsofphp/php-cs-fixer": "^3.0",
                 "mikey179/vfsstream": "^1.6",
+                "php-etl/phpspec-extension": "0.4.0",
                 "phpstan/phpstan": "^1.10",
                 "phpunit/php-invoker": "*",
                 "phpunit/phpunit": "^10.0",
@@ -278,7 +277,7 @@
                 "issues": "https://github.com/php-etl/fast-map/issues",
                 "source": "https://github.com/php-etl/fast-map/tree/v0.5.0"
             },
-            "time": "2023-04-04T13:40:27+00:00"
+            "time": "2023-04-06T10:23:27+00:00"
         },
         {
             "name": "php-etl/mapping-contracts",
@@ -286,18 +285,18 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-etl/mapping-contracts.git",
-                "reference": "91ecc1148471bc37af871a429b3771b602e34afa"
+                "reference": "965d756220a23be391609891da887db7b13c45aa"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-etl/mapping-contracts/zipball/91ecc1148471bc37af871a429b3771b602e34afa",
-                "reference": "91ecc1148471bc37af871a429b3771b602e34afa",
+                "url": "https://api.github.com/repos/php-etl/mapping-contracts/zipball/965d756220a23be391609891da887db7b13c45aa",
+                "reference": "965d756220a23be391609891da887db7b13c45aa",
                 "shasum": ""
             },
             "require": {
                 "nikic/php-parser": "^4.10",
                 "php": "^8.2",
-                "php-etl/metadata-contracts": "^0.2.0",
+                "php-etl/metadata-contracts": "0.2.0",
                 "symfony/property-access": "^6.0"
             },
             "require-dev": {
@@ -335,7 +334,7 @@
                 "issues": "https://github.com/php-etl/mapping-contracts/issues",
                 "source": "https://github.com/php-etl/mapping-contracts/tree/v0.4.0"
             },
-            "time": "2023-04-04T07:37:35+00:00"
+            "time": "2023-04-06T11:59:27+00:00"
         },
         {
             "name": "php-etl/metadata",
@@ -343,25 +342,25 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-etl/metadata.git",
-                "reference": "b0285d787f2a4f53894114cf612928f6dead8f1c"
+                "reference": "161dc4eabd8d8239ec145628834e461726351f82"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-etl/metadata/zipball/b0285d787f2a4f53894114cf612928f6dead8f1c",
-                "reference": "b0285d787f2a4f53894114cf612928f6dead8f1c",
+                "url": "https://api.github.com/repos/php-etl/metadata/zipball/161dc4eabd8d8239ec145628834e461726351f82",
+                "reference": "161dc4eabd8d8239ec145628834e461726351f82",
                 "shasum": ""
             },
             "require": {
                 "doctrine/inflector": "^2.0",
                 "nikic/php-parser": "^4.9@dev",
                 "php": "^8.2",
-                "php-etl/metadata-contracts": "^0.2",
+                "php-etl/metadata-contracts": "0.2.0",
                 "phpactor/docblock": "^0.3.0@dev"
             },
             "require-dev": {
                 "friends-of-phpspec/phpspec-code-coverage": "^6.0",
                 "friendsofphp/php-cs-fixer": "^3.0",
-                "php-etl/phpspec-extension": "^0.4",
+                "php-etl/phpspec-extension": "*",
                 "phpspec/phpspec": "^7.0",
                 "rector/rector": "^0.15"
             },
@@ -395,7 +394,7 @@
                 "issues": "https://github.com/php-etl/metadata/issues",
                 "source": "https://github.com/php-etl/metadata/tree/v0.4.0"
             },
-            "time": "2023-04-04T09:59:20+00:00"
+            "time": "2023-04-06T12:09:29+00:00"
         },
         {
             "name": "php-etl/metadata-contracts",
@@ -510,25 +509,25 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-etl/satellite-toolbox.git",
-                "reference": "41daaef04b99848f9ae2625698cc1665a1045f40"
+                "reference": "491f1011a88a949c470ea95e5a24e22458c1867f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-etl/satellite-toolbox/zipball/41daaef04b99848f9ae2625698cc1665a1045f40",
-                "reference": "41daaef04b99848f9ae2625698cc1665a1045f40",
+                "url": "https://api.github.com/repos/php-etl/satellite-toolbox/zipball/491f1011a88a949c470ea95e5a24e22458c1867f",
+                "reference": "491f1011a88a949c470ea95e5a24e22458c1867f",
                 "shasum": ""
             },
             "require": {
                 "nikic/php-parser": "^4.10",
                 "php": "^8.2",
-                "php-etl/configurator-contracts": "^0.7.0",
+                "php-etl/configurator-contracts": "0.7.0",
                 "symfony/expression-language": "^6.0"
             },
             "require-dev": {
                 "friendsofphp/php-cs-fixer": "^3.0",
                 "infection/infection": "^0.26.18",
                 "mikey179/vfsstream": "^1.6",
-                "php-etl/phpunit-extension": "^0.5.0",
+                "php-etl/phpunit-extension": "*",
                 "phpstan/phpstan": "^1.10",
                 "phpunit/php-invoker": "*",
                 "phpunit/phpunit": "^10.0",
@@ -568,7 +567,7 @@
                 "issues": "https://github.com/php-etl/satellite-toolbox/issues",
                 "source": "https://github.com/php-etl/satellite-toolbox/tree/v0.5.0"
             },
-            "time": "2023-04-04T11:53:09+00:00"
+            "time": "2023-04-06T12:23:06+00:00"
         },
         {
             "name": "phpactor/docblock",
@@ -2605,16 +2604,16 @@
         },
         {
             "name": "phpstan/phpstan",
-            "version": "1.10.10",
+            "version": "1.10.11",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpstan/phpstan.git",
-                "reference": "f1e22c9b17a879987f8743d81533250a5fff47f9"
+                "reference": "8aa62e6ea8b58ffb650e02940e55a788cbc3fe21"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/f1e22c9b17a879987f8743d81533250a5fff47f9",
-                "reference": "f1e22c9b17a879987f8743d81533250a5fff47f9",
+                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/8aa62e6ea8b58ffb650e02940e55a788cbc3fe21",
+                "reference": "8aa62e6ea8b58ffb650e02940e55a788cbc3fe21",
                 "shasum": ""
             },
             "require": {
@@ -2663,7 +2662,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2023-04-01T17:06:15+00:00"
+            "time": "2023-04-04T19:17:42+00:00"
         },
         {
             "name": "phpunit/php-code-coverage",
@@ -3136,16 +3135,16 @@
         },
         {
             "name": "rector/rector",
-            "version": "0.15.23",
+            "version": "0.15.24",
             "source": {
                 "type": "git",
                 "url": "https://github.com/rectorphp/rector.git",
-                "reference": "f4984ebd62b3613002869b0ddd6868261d62819e"
+                "reference": "716473919bcfdc27bdd2a32afb72adbf4c224e59"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/rectorphp/rector/zipball/f4984ebd62b3613002869b0ddd6868261d62819e",
-                "reference": "f4984ebd62b3613002869b0ddd6868261d62819e",
+                "url": "https://api.github.com/repos/rectorphp/rector/zipball/716473919bcfdc27bdd2a32afb72adbf4c224e59",
+                "reference": "716473919bcfdc27bdd2a32afb72adbf4c224e59",
                 "shasum": ""
             },
             "require": {
@@ -3185,7 +3184,7 @@
             ],
             "support": {
                 "issues": "https://github.com/rectorphp/rector/issues",
-                "source": "https://github.com/rectorphp/rector/tree/0.15.23"
+                "source": "https://github.com/rectorphp/rector/tree/0.15.24"
             },
             "funding": [
                 {
@@ -3193,7 +3192,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2023-03-22T15:22:45+00:00"
+            "time": "2023-04-05T08:49:11+00:00"
         },
         {
             "name": "sebastian/cli-parser",
