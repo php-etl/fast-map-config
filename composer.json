@@ -20,7 +20,7 @@
         "symfony/expression-language": "^6.0",
         "symfony/property-access": "^6.0",
         "php-etl/metadata": "*",
-        "php-etl/mapping-contracts": "0.4.0",
+        "php-etl/mapping-contracts": "0.4.*",
         "php-etl/fast-map": "*"
     },
     "autoload": {
