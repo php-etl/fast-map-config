@@ -95,6 +95,19 @@ final class CompositeBuilder implements \IteratorAggregate, CompositeBuilderInte
         return $this;
     }
 
+    public function replace(string $path, array $replacements): self
+    {
+        $this->fields[] = fn () => new FastMap\Mapping\Field(
+            new PropertyPath($path),
+            new FastMap\Mapping\Field\ReplaceValueMapper(
+                new PropertyPath($path),
+                $replacements
+            )
+        );
+
+        return $this;
+    }
+
     public function list(string $outputPath, string|Expression $expression): ArrayBuilderInterface
     {
         $child = new ArrayBuilder($this, $this->interpreter);
