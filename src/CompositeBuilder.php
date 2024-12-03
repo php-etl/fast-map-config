@@ -81,13 +81,26 @@ final class CompositeBuilder implements \IteratorAggregate, CompositeBuilderInte
         return $this;
     }
 
+    private function buildExpressionInstance(string|Expression $expression): Expression
+    {
+        if ($expression instanceof Expression) {
+            return $expression;
+        }
+
+        if (strpos($expression, '@=') === 0) {
+            $expression = substr($expression, 2);
+        }
+
+        return new Expression($expression);
+    }
+
     public function expression(string $outputPath, string|Expression $expression, array $additionalVariables = []): self
     {
         $this->fields[] = fn () => new FastMap\Mapping\Field(
             new PropertyPath($outputPath),
             new FastMap\Mapping\Field\ExpressionLanguageValueMapper(
                 $this->interpreter,
-                $expression instanceof Expression ? $expression : new Expression($expression),
+                $this->buildExpressionInstance($expression),
                 $additionalVariables,
             )
         );
@@ -102,7 +115,7 @@ final class CompositeBuilder implements \IteratorAggregate, CompositeBuilderInte
         $this->fields[] = fn () => new FastMap\Mapping\ListField(
             new PropertyPath($outputPath),
             $this->interpreter,
-            $expression instanceof Expression ? $expression : new Expression($expression),
+            $this->buildExpressionInstance($expression),
             $child->getMapper()
         );
 
@@ -128,7 +141,7 @@ final class CompositeBuilder implements \IteratorAggregate, CompositeBuilderInte
         $this->fields[] = fn () => new FastMap\Mapping\SingleRelation(
             new PropertyPath($outputPath),
             $this->interpreter,
-            $expression instanceof Expression ? $expression : new Expression($expression),
+            $this->buildExpressionInstance($expression),
             $child->getMapper()
         );
 
@@ -142,7 +155,7 @@ final class CompositeBuilder implements \IteratorAggregate, CompositeBuilderInte
         $this->fields[] = fn () => new FastMap\Mapping\MultipleRelation(
             new PropertyPath($outputPath),
             $this->interpreter,
-            $expression instanceof Expression ? $expression : new Expression($expression),
+            $this->buildExpressionInstance($expression),
             $child->getMapper()
         );
 
